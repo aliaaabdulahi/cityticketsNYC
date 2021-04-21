@@ -359,12 +359,6 @@ const products =
   }
   ]
 
-//not sure
-const orders = [
-  { userId: 1 }
-]
-
-
 const seed = async () => {
   try {
     await db.sync({ force: true });
@@ -378,20 +372,7 @@ const seed = async () => {
       return Product.create(product)
     }));
 
-    //not sure
-    const newOrders = await Promise.all(orders.map(order => {
-      return Order.create(order)
-    }));
-
-    // await (newOrders[0].addProduct(newProducts[0]))
-
-    //random assign
-    // await Promise.all(newRobots.map(robot =>
-    //    robot.addProject(newProjects[Math.floor(Math.random() * newProjects.length)])));
-
-    // await Promise.all(newProjects.map(project =>
-    //    project.addRobot(newRobots[Math.floor(Math.random() * newRobots.length)])));
-
+    
   } catch (err) {
     console.log(err);
   }
