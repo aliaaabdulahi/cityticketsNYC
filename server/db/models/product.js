@@ -24,7 +24,7 @@ const Product = db.define("product", {
     type: Sequelize.FLOAT,
     allowNull: false,
     validate: {
-      isEmpty: false,
+      notEmpty: false,
     },
   },
   date: {
