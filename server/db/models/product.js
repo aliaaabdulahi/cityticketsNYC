@@ -7,7 +7,7 @@ const Product = db.define("product", {
     unique: true,
     allowNull: false,
     validate: {
-      isEmpty: false,
+      notEmpty: true,
     },
   },
   description: Sequelize.TEXT,
@@ -17,7 +17,7 @@ const Product = db.define("product", {
     defaultValue:
       "https://upload.wikimedia.org/wikipedia/commons/3/31/Walk_of_Fame_Category_Motion_Pictures.jpg",
     validate: {
-      isEmpty: false,
+      notEmpty: true,
     },
   },
   price: {
@@ -31,14 +31,14 @@ const Product = db.define("product", {
     type: Sequelize.DATEONLY,
     allowNull: false,
     validate: {
-      isEmpty: false,
+      notEmpty: true,
     },
   },
   time: {
     type: Sequelize.TIME,
     allowNull: false,
     validate: {
-      isEmpty: false,
+      notEmpty: true,
     },
   },
 });
