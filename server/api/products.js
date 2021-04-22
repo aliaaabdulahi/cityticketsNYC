@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Product },
+  models: { Product, Order },
 } = require("../db");
 
 router.get("/", async (req, res, next) => {
@@ -26,7 +26,7 @@ router.post('/createOrder', async (req, res, next) => {
   try {
     const newOrder = await Order.create({'userId':1})
   
-    const newProduct = await Product.findByPk(req.params.id)
+    const newProduct = await Product.findByPk(req.body.id)
     
     const assignedOrder = await newOrder.addProduct(newProduct)
 
