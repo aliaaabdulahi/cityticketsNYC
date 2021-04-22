@@ -1,26 +1,10 @@
 const router = require('express').Router()
 const { models: { User } } = require('../db')
-const { requireToken, isAdmin } = require('./gatekeepingMiddleware')
+const { requireToken,} = require('./gatekeepingMiddleware')
 
 module.exports = router
 
-router.get("/", requireToken, isAdmin, async (req, res, next) => {
-   try {
-     
-      const users = await User.findAll({
-         attributes: ['id', 'username']
-      })
-      res.json(users)
-      // } else {
-      //   res.status(401).send('Not authorized')
-      // }
-
-   } catch (err) {
-      next(err)
-   }
-})
-
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", requireToken, async (req, res, next) => {
   try {
     const { id } = req.params;
     const singleUser = await User.findByPk(id);
@@ -32,8 +16,8 @@ router.get("/:id", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id);
-    res.send(await user.update(req.body));
+   const user = await User.findByPk(req.params.id);
+   res.send(await user.update(req.body));
   } catch (err) {
     next(err);
   }
