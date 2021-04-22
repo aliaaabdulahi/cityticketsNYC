@@ -19,8 +19,17 @@ const isAdmin = (req, res, next) => {
    }
 }
 
+const isLoggedInUser = (req, res, next) => {
+   if (req.user.id !== Number(req.params.id)) {
+      return res.status(403).send('Please login to correct account.')
+   } else {
+      next()
+   }
+}
+
 
 module.exports = {
    requireToken,
-   isAdmin
+   isAdmin, 
+   isLoggedInUser
 }
