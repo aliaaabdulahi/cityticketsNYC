@@ -21,4 +21,22 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+  
+router.post('/createOrder', async (req, res, next) => {
+  try {
+    const newOrder = await Order.create({'userId':1})
+  
+    const newProduct = await Product.findByPk(req.params.id)
+    
+    const assignedOrder = await newOrder.addProduct(newProduct)
+
+    console.log('here ===>', newOrder.__proto__)
+    res.send(assignedOrder)
+
+  } catch (err) {
+    next(err)
+  }
+})
+
+
 module.exports = router;

@@ -1,7 +1,34 @@
-const router = require("express").Router();
-const {
-  models: { Order_Product, Product, Order },
-} = require("../db");
+// const router = require("express").Router();
+// const {
+//   models: { Order_Product, Product, Order },
+// } = require("../db");
+
+
+// let date = new Date()
+
+// router.get("/", async (req, res, next) => {
+//   try {
+//     // let orderProducts = await Order_Product.findAll();
+//     const newOrder = await Order.findByPk(1)
+//     const newProduct = await Product.create({
+//       name:'honeybee12',
+//       description:'hi',
+//       image:'http://cdn.shopify.com/s/files/1/1061/1924/products/Money_Bag_Emoji_grande.png?v=1571606064',
+//       price:10.0,
+//       date:'1/1/1999',
+//       time: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+//     })
+    
+//     const product = await Product.findByPk(1)
+//     const test = [product]
+//     console.log('order ==', Object.keys(product.__proto__))
+
+//     const data = await product.createOrder(newOrder)
+//     res.send(newOrder)
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 // user submit shopping cart ---> req.body
 // req.body is a [{productId,qty}, {productId,qty}] ?
