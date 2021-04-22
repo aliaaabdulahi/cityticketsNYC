@@ -1,6 +1,24 @@
 const router = require('express').Router()
 const { models: { User } } = require('../db')
+const { requireToken, isAdmin } = require('./gatekeepingMiddleware')
+
 module.exports = router
+
+router.get("/", requireToken, isAdmin, async (req, res, next) => {
+   try {
+     
+      const users = await User.findAll({
+         attributes: ['id', 'username']
+      })
+      res.json(users)
+      // } else {
+      //   res.status(401).send('Not authorized')
+      // }
+
+   } catch (err) {
+      next(err)
+   }
+})
 
 router.get("/:id", async (req, res, next) => {
   try {
