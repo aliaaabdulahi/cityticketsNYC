@@ -8,10 +8,11 @@ const Order = db.define("order", {
     allowNull: false,
   },
   buyerEmail: {
-    type: Sequelize.EMAIL,
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
+      isEmail: true,
     },
   },
   totalAmount: {
