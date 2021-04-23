@@ -759,23 +759,30 @@ const seed = async () => {
       })
     );
 
-    // const setProduct = await Promise.all(
+    const newOrder = await Order.create({ 
+      userId: 1,  
+      isFulfilled:false, 
+      buyerEmail:'iris@gmail.com',
+      totalAmount:100,
+       });
+    
+    const newProduct = await Product.create(products[0])
+
+    console.log('product here ===>', newProduct)
+    console.log('newOrder model method here ===>', newOrder.__proto__)
+
+    // const newProducts = await Promise.all(
     //   products.map((product) => {
-    //     return Product.create(product);
+    //     return Product.create(product)
+        
     //   })
-    // )
-
-    const newProducts = await Promise.all(
-      products.map((product) => {
-        return Product.create(product);
-      })
-    );
-
-    const newOrderProducts = await Promise.all(
-      order_products.map((order_product) => {
-        return Order_Product.create(order_product);
-      })
-    );
+    // );
+    await newOrder.createProduct(newProduct)
+    // const newOrderProducts = await Promise.all(
+    //   order_products.map((order_product) => {
+    //     return Order_Product.create(order_product);
+    //   })
+    // );
   } catch (err) {
     console.log(err);
   }
