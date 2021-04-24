@@ -4,29 +4,30 @@ import { fetchProducts } from "../store/products";
 import SingleProduct from "./SingleProduct";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
-import Cart from './Cart'
+import Cart from "./Cart";
 
 class AllProducts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectItems: []
-    }
-    this.handleAdd = this.handleAdd.bind(this)
+      selectItems: [],
+    };
+    this.handleAdd = this.handleAdd.bind(this);
   }
   componentDidMount() {
     this.props.loadProducts();
   }
 
-  handleAdd(evt){
-    const newItem = evt.target.name
-    const existItems = this.state.selectItems
+  handleAdd(evt) {
+    this.props.fetchAddItem();
+    //   const newItem = evt.target.name
+    //   // const existItems = this.state.selectItems
 
-    existItems.push(newItem)
+    //   existItems.push(newItem)
 
-    this.setState({
-      selectItems: existItems
-    })
+    //   this.setState({
+    //     selectItems: existItems
+    //   })
   }
 
   render() {
@@ -34,13 +35,19 @@ class AllProducts extends Component {
 
     return (
       <div>
-      <Cart items = {this.state.selectItems} />
+        <Cart items={this.state.selectItems} />
         {products
           ? products.map((product) => (
-            <div key={product.id}>
-              <ProductCard product={product} key={product.id} />
-              <button onClick={this.handleAdd} key={product.id} name={product.name}>+</button>
-            </div> 
+              <div key={product.id}>
+                <ProductCard product={product} key={product.id} />
+                <button
+                  onClick={this.handleAdd}
+                  key={product.id}
+                  name={product.name}
+                >
+                  +
+                </button>
+              </div>
             ))
           : "loading"}
       </div>
