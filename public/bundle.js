@@ -2031,18 +2031,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_admin_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/admin_users */ "./client/store/admin_users.js");
 /* harmony import */ var _AdminUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminUser */ "./client/components/Admin/AdminUser.js");
+/* harmony import */ var _client_store_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../../client/store/auth */ "./client/store/auth.js");
+
 
 
 
 
 class AdminAllUsers extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleDelete = this.handleDelete.bind(this);
+    this.fetchAllUserHandle = this.fetchAllUserHandle.bind(this);
+    this.state = {
+      'loading': false
+    };
   }
 
   componentDidMount() {
+    console.log('did mount!'); // this.props.verifyMe()
+
     this.props.getUsers();
+  }
+
+  fetchAllUserHandle() {
+    this.setState({
+      loading: !this.state.loading
+    });
   }
 
   handleDelete(id) {
@@ -2090,6 +2104,7 @@ const mapState = state => {
 const mapDispatch = (dispatch, {
   history
 }) => ({
+  verifyMe: () => dispatch((0,_client_store_auth__WEBPACK_IMPORTED_MODULE_4__.me)()),
   getUsers: () => dispatch((0,_store_admin_users__WEBPACK_IMPORTED_MODULE_2__.getUsers)()),
   deleteUser: userId => dispatch((0,_store_admin_users__WEBPACK_IMPORTED_MODULE_2__.deleteUser)(userId, history))
 });
