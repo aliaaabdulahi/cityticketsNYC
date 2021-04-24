@@ -23,7 +23,9 @@ export const _updateUser = (user) => ({
 export const getUsers = () => {
    return async (dispatch) => {
       try {
+         console.log('admin fetching users')
          const { data: users } = await axios.get('/api/admin/users')
+         console.log('here is data ==>', users)
          dispatch(_getUsers(users))
       } catch (error) {
          console.log('Failed to fetch users (GET /api/admin/users)', error)
