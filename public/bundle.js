@@ -2754,9 +2754,11 @@ const _updateUser = user => ({
 const getUsers = () => {
   return async dispatch => {
     try {
+      console.log('admin fetching users');
       const {
         data: users
       } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/admin/users');
+      console.log('here is data ==>', users);
       dispatch(_getUsers(users));
     } catch (error) {
       console.log('Failed to fetch users (GET /api/admin/users)', error);
@@ -2851,6 +2853,7 @@ const me = () => async dispatch => {
         authorization: token
       }
     });
+    console.log('here is your res', token);
     return dispatch(setAuth(res.data));
   }
 }; //get single user
