@@ -732,22 +732,6 @@ const products = [
   },
 ];
 
-const order = [
-  {
-    orderId: 1,
-    buyerEmail: "a@gmail.com",
-    totalAmount: 34.22,
-  },
-];
-
-const order_products = [
-  {
-    quantity: 10,
-    productId: 1,
-    orderId: 1,
-  },
-];
-
 const seed = async () => {
   try {
     await db.sync({ force: true });
@@ -758,31 +742,28 @@ const seed = async () => {
         return User.create(user);
       })
     );
+    const newProducts = await Promise.all(
+      products.map((product) => {
+        return Product.create(product);
+      })
+    );
 
     const newOrder = await Order.create({ 
       userId: 1,  
       isFulfilled:false, 
       buyerEmail:'iris@gmail.com',
       totalAmount:100,
-       });
+    });
     
-    const newProduct = await Product.create(products[0])
+    //const newProduct = await Product.create(products[0])
+    const newOrder_Product = await Order_Product.create({
+      quantity:1,
+      productId: 1,
+      orderId: 1
+    })
 
-    console.log('product here ===>', newProduct)
-    console.log('newOrder model method here ===>', newOrder.__proto__)
+    
 
-    // const newProducts = await Promise.all(
-    //   products.map((product) => {
-    //     return Product.create(product)
-        
-    //   })
-    // );
-    await newOrder.createProduct(newProduct)
-    // const newOrderProducts = await Promise.all(
-    //   order_products.map((order_product) => {
-    //     return Order_Product.create(order_product);
-    //   })
-    // );
   } catch (err) {
     console.log(err);
   }
