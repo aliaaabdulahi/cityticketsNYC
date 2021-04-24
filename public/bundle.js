@@ -1992,6 +1992,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_products__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/products */ "./client/store/products.js");
 /* harmony import */ var _SingleProduct__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SingleProduct */ "./client/components/SingleProduct.js");
 /* harmony import */ var _ProductCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductCard */ "./client/components/ProductCard.js");
+/* harmony import */ var _Cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Cart */ "./client/components/Cart.js");
+
 
 
 
@@ -2002,19 +2004,36 @@ __webpack_require__.r(__webpack_exports__);
 class AllProducts extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectItems: []
+    };
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   componentDidMount() {
     this.props.loadProducts();
   }
 
+  handleAdd(evt) {
+    const newItems = this.state.selectItems;
+    newItems.push(evt.target.name);
+    this.setState({
+      selectItems: newItems
+    });
+  }
+
   render() {
     const products = this.props.products || [];
-    console.log(products);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, products ? products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_4__.default, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Cart__WEBPACK_IMPORTED_MODULE_5__.default, {
+      items: this.state.selectItems
+    }), products ? products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_4__.default, {
       product: product,
       key: product.id
-    })) : "loading");
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: this.handleAdd,
+      key: product.id,
+      name: product.name
+    }, "+"))) : "loading");
   }
 
 }
@@ -2122,6 +2141,38 @@ const mapDispatch = dispatch => {
 
 const Login = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapLogin, mapDispatch)(AuthForm);
 const Signup = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapSignup, mapDispatch)(AuthForm);
+
+/***/ }),
+
+/***/ "./client/components/Cart.js":
+/*!***********************************!*\
+  !*** ./client/components/Cart.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Cart": () => /* binding */ Cart,
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const hotdogs = this.props.items || []; // const hotdogs = ['candy', 'handy']
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p1", null, "My Cart"), hotdogs.map(hotdog => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, hotdog)));
+  }
+
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cart);
 
 /***/ }),
 
