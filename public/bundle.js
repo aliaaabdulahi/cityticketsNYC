@@ -2031,7 +2031,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_admin_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/admin_users */ "./client/store/admin_users.js");
 /* harmony import */ var _AdminUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminUser */ "./client/components/Admin/AdminUser.js");
-/* harmony import */ var _client_store_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../../client/store/auth */ "./client/store/auth.js");
+/* harmony import */ var _client_store_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../client/store/auth */ "./client/store/auth.js");
 
 
 
@@ -2199,12 +2199,12 @@ class AllProducts extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   handleAdd(evt) {
-    const newItem = evt.target.name;
-    const existItems = this.state.selectItems;
-    existItems.push(newItem);
-    this.setState({
-      selectItems: existItems
-    });
+    this.props.fetchAddItem(); //   const newItem = evt.target.name
+    //   // const existItems = this.state.selectItems
+    //   existItems.push(newItem)
+    //   this.setState({
+    //     selectItems: existItems
+    //   })
   }
 
   render() {
