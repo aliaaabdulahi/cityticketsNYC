@@ -13,7 +13,9 @@ class SingleProduct extends Component {
   }
   render() {
     console.log("singleproduct props", this.props);
-    return <div>{this.props.product.name}</div>;
+    return <div>{this.props.product.name}
+  
+    </div>;
   }
 }
 

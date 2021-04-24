@@ -5,11 +5,21 @@ const {
 
 router.post("/createOrder", async (req, res, next) => {
   try {
-    const newOrder = await Order.create({ userId: 1 });
+    const newOrder = await Order.create({ 
+      userId: 1,
+    buyerEmail:'iris.shi@tableau.com',
+    totalAmount:9999 });
 
-    const newProduct = await Product.findByPk(req.body.id);
+    // const newProduct = await Product.findByPk(req.body.id);
 
-    const assignedOrder = await newOrder.addProduct(newProduct);
+    const assignedOrder = await Order_Product.create(
+      {
+        quantity:Math.floor(Math.random()*100/4),
+        productId:4,
+        orderId:3
+      }
+      
+    );
 
     console.log("here ===>", newOrder.__proto__);
     res.send(assignedOrder);
@@ -17,6 +27,15 @@ router.post("/createOrder", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/createOrder", async (req, res, next) => {
+  try {
+    res.send('hi');
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 // let date = new Date()
 
