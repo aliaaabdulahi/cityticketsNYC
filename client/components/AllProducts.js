@@ -19,11 +19,13 @@ class AllProducts extends Component {
   }
 
   handleAdd(evt){
-    const newItems = this.state.selectItems
-    newItems.push(evt.target.name)
+    const newItem = evt.target.name
+    const existItems = this.state.selectItems
+
+    existItems.push(newItem)
 
     this.setState({
-      selectItems: newItems
+      selectItems: existItems
     })
   }
 
@@ -32,10 +34,10 @@ class AllProducts extends Component {
 
     return (
       <div>
-      <Cart items = {this.state.selectItems}/>
+      <Cart items = {this.state.selectItems} />
         {products
           ? products.map((product) => (
-            <div>
+            <div key={product.id}>
               <ProductCard product={product} key={product.id} />
               <button onClick={this.handleAdd} key={product.id} name={product.name}>+</button>
             </div> 

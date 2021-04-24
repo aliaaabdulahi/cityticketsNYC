@@ -2015,10 +2015,11 @@ class AllProducts extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   handleAdd(evt) {
-    const newItems = this.state.selectItems;
-    newItems.push(evt.target.name);
+    const newItem = evt.target.name;
+    const existItems = this.state.selectItems;
+    existItems.push(newItem);
     this.setState({
-      selectItems: newItems
+      selectItems: existItems
     });
   }
 
@@ -2026,7 +2027,9 @@ class AllProducts extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     const products = this.props.products || [];
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Cart__WEBPACK_IMPORTED_MODULE_5__.default, {
       items: this.state.selectItems
-    }), products ? products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_4__.default, {
+    }), products ? products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: product.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_4__.default, {
       product: product,
       key: product.id
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -2166,9 +2169,15 @@ class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   render() {
-    const hotdogs = this.props.items || []; // const hotdogs = ['candy', 'handy']
+    const items = this.props.items || [];
+    const itemDict = {};
 
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p1", null, "My Cart"), hotdogs.map(hotdog => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, hotdog)));
+    for (var i = 0; i < items.length; i++) {
+      itemDict[items[i]] = (itemDict[items[i]] || 0) + 1;
+    }
+
+    const keys = Object.keys(itemDict);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "My Cart"), keys.map(key => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, key), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, " Qty: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, itemDict[key]), " ")));
   }
 
 }
@@ -2199,7 +2208,9 @@ class ProductCard extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: this.props.product.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
       to: `/products/${this.props.product.id}`
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, this.props.product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
       src: this.props.product.image
@@ -2242,8 +2253,9 @@ class SingleProduct extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   render() {
-    console.log("singleproduct props", this.props);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, this.props.product.name);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: this.props.product.id
+    }, this.props.product.name);
   }
 
 }

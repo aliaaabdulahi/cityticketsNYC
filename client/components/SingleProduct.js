@@ -12,8 +12,7 @@ class SingleProduct extends Component {
     this.props.loadSingleProduct(this.props.match.params.id);
   }
   render() {
-    console.log("singleproduct props", this.props);
-    return <div>{this.props.product.name}
+    return <div key={this.props.product.id}>{this.props.product.name}
   
     </div>;
   }

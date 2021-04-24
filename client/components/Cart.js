@@ -10,13 +10,22 @@ export class Cart extends Component {
     }
     
     render() {
-    const hotdogs = this.props.items || []
-    // const hotdogs = ['candy', 'handy']
+    const items = this.props.items || []
+    const itemDict = {}
+
+    for (var i=0; i < items.length; i++) {
+        itemDict[items[i]] = (itemDict[items[i]] || 0) +1 ;
+      }
+    const keys = Object.keys(itemDict)
+
         return (
             <div>
-                <p1>My Cart</p1>
-                {hotdogs.map((hotdog)=>(
-                    <div>{hotdog}</div>
+                <p>My Cart</p>
+                {keys.map((key)=>(
+                    <div>
+                    <span>{key}</span>
+                    <span>{" Qty: "}</span>
+                    <span>{itemDict[key]}</span> </div>
                 ))}
             </div>
         )
