@@ -732,22 +732,6 @@ const products = [
   },
 ];
 
-const order = [
-  {
-    orderId: 1,
-    buyerEmail: "a@gmail.com",
-    totalAmount: 34.22,
-  },
-];
-
-const order_products = [
-  {
-    quantity: 10,
-    productId: 1,
-    orderId: 1,
-  },
-];
-
 const seed = async () => {
   try {
     await db.sync({ force: true });
@@ -758,7 +742,30 @@ const seed = async () => {
         return User.create(user);
       })
     );
+    const newProducts = await Promise.all(
+      products.map((product) => {
+        return Product.create(product);
+      })
+    );
 
+<<<<<<< HEAD
+    const newOrder = await Order.create({ 
+      userId: 1,  
+      isFulfilled:false, 
+      buyerEmail:'iris@gmail.com',
+      totalAmount:100,
+    });
+    
+    //const newProduct = await Product.create(products[0])
+    const newOrder_Product = await Order_Product.create({
+      quantity:1,
+      productId: 1,
+      orderId: 1
+    })
+
+    
+
+=======
 
     const newProducts = await Promise.all(
       products.map((product) => {
@@ -786,6 +793,7 @@ const seed = async () => {
     //     return Order_Product.create(order_product);
     //   })
     // );
+>>>>>>> main
   } catch (err) {
     console.log(err);
   }
