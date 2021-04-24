@@ -748,6 +748,7 @@ const seed = async () => {
       })
     );
 
+<<<<<<< HEAD
     const newOrder = await Order.create({ 
       userId: 1,  
       isFulfilled:false, 
@@ -764,6 +765,35 @@ const seed = async () => {
 
     
 
+=======
+
+    const newProducts = await Promise.all(
+      products.map((product) => {
+        return Product.create(product)
+        
+      })
+    );
+
+    await Order.create(
+      {
+        userId: Math.floor(Math.random()*100/4),  
+        isFulfilled:false, 
+        buyerEmail:'iris@gmail.com',
+        totalAmount:Math.floor(Math.random()*100/4), })
+        
+    await Order_Product.create({
+      quantity:Math.floor(Math.random()*100/4),
+      productId:2,
+      orderId:1
+    })
+
+    
+    // const newOrderProducts = await Promise.all(
+    //   order_products.map((order_product) => {
+    //     return Order_Product.create(order_product);
+    //   })
+    // );
+>>>>>>> main
   } catch (err) {
     console.log(err);
   }
