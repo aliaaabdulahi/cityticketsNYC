@@ -1,8 +1,22 @@
-// const router = require("express").Router();
-// const {
-//   models: { Order_Product, Product, Order },
-// } = require("../db");
+const router = require("express").Router();
+const {
+  models: { Order_Product, Product, Order },
+} = require("../db");
 
+router.post("/createOrder", async (req, res, next) => {
+  try {
+    const newOrder = await Order.create({ userId: 1 });
+
+    const newProduct = await Product.findByPk(req.body.id);
+
+    const assignedOrder = await newOrder.addProduct(newProduct);
+
+    console.log("here ===>", newOrder.__proto__);
+    res.send(assignedOrder);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // let date = new Date()
 
@@ -18,7 +32,7 @@
 //       date:'1/1/1999',
 //       time: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
 //     })
-    
+
 //     const product = await Product.findByPk(1)
 //     const test = [product]
 //     console.log('order ==', Object.keys(product.__proto__))
@@ -91,4 +105,4 @@
 //   }
 // });
 
-// module.exports = router;
+module.exports = router;

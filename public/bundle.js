@@ -1961,17 +1961,186 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Navbar */ "./client/components/Navbar.js");
+/* harmony import */ var _components_navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/navbar */ "./client/components/navbar.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./client/routes.js");
 
 
 
 
 const App = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_routes__WEBPACK_IMPORTED_MODULE_2__.default, null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_navbar__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_routes__WEBPACK_IMPORTED_MODULE_2__.default, null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./client/components/Admin/Admin.js":
+/*!******************************************!*\
+  !*** ./client/components/Admin/Admin.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Admin": () => /* binding */ Admin,
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+const Admin = props => {
+  const {
+    username
+  } = props;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Welcome Admin ", username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "/admin/users"
+  }, " All Users "));
+};
+
+const mapState = state => {
+  return {
+    username: state.auth.username,
+    isAdmin: state.auth.isAdmin
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState)(Admin));
+
+/***/ }),
+
+/***/ "./client/components/Admin/AdminAllUsers.js":
+/*!**************************************************!*\
+  !*** ./client/components/Admin/AdminAllUsers.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AdminAllUsers": () => /* binding */ AdminAllUsers,
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_admin_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/admin_users */ "./client/store/admin_users.js");
+/* harmony import */ var _AdminUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminUser */ "./client/components/Admin/AdminUser.js");
+
+
+
+
+class AdminAllUsers extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
+  constructor() {
+    super();
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getUsers();
+  }
+
+  handleDelete(id) {
+    this.props.deleteUser(id);
+  }
+
+  render() {
+    const {
+      users,
+      isLoading
+    } = this.props; // if (isLoading) {
+    //    return (
+    //       <div>
+    //          <h1>Loading Users!</h1>
+    //       </div>
+    //    )
+    // }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, Array.isArray(users) && users.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "main"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "There are no users registered in the database.")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "all-items-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, " ALL USERS: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, users.length, " users in the database")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "all-items-row"
+    }, users.map(user => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "all-items-col",
+      key: user.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AdminUser__WEBPACK_IMPORTED_MODULE_3__.default, {
+      user: user,
+      handleDelete: this.handleDelete
+    })))))));
+  }
+
+}
+
+const mapState = state => {
+  console.log('state', state);
+  return {
+    users: state.users,
+    //users = []
+    isLoading: state.isLoading
+  };
+};
+
+const mapDispatch = (dispatch, {
+  history
+}) => ({
+  getUsers: () => dispatch((0,_store_admin_users__WEBPACK_IMPORTED_MODULE_2__.getUsers)()),
+  deleteUser: userId => dispatch((0,_store_admin_users__WEBPACK_IMPORTED_MODULE_2__.deleteUser)(userId, history))
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(AdminAllUsers)); //axios can't fetch allUsers ??
+
+/***/ }),
+
+/***/ "./client/components/Admin/AdminUser.js":
+/*!**********************************************!*\
+  !*** ./client/components/Admin/AdminUser.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+const AdminUser = props => {
+  const {
+    username,
+    id,
+    isAdmin
+  } = props.user;
+  const {
+    handleDelete
+  } = props;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "single-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "card-30"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: `/admin/users/${id}`
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "ID: ", id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "card-70"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, isAdmin === true ? "admin" : " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "remove-button",
+    onClick: () => handleDelete(id)
+  }, " X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: `/admin/users/${id}/edit`
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, " Edit User ")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminUser);
 
 /***/ }),
 
@@ -2125,105 +2294,6 @@ const Signup = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapSignup, m
 
 /***/ }),
 
-/***/ "./client/components/Home.js":
-/*!***********************************!*\
-  !*** ./client/components/Home.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Home": () => /* binding */ Home,
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-
-
-/**
- * COMPONENT
- */
-
-const Home = props => {
-  const {
-    username
-  } = props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Welcome, ", username));
-};
-/**
- * CONTAINER
- */
-
-const mapState = state => {
-  return {
-    username: state.auth.username
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState)(Home));
-
-/***/ }),
-
-/***/ "./client/components/Navbar.js":
-/*!*************************************!*\
-  !*** ./client/components/Navbar.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
-
-
-
-
-
-const Navbar = ({
-  handleClick,
-  isLoggedIn
-}) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "City tickets"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/home"
-}, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-  href: "#",
-  onClick: handleClick
-}, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/login"
-}, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-  to: "/signup"
-}, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null));
-/**
- * CONTAINER
- */
-
-
-const mapState = state => {
-  return {
-    isLoggedIn: !!state.auth.id
-  };
-};
-
-const mapDispatch = dispatch => {
-  return {
-    handleClick() {
-      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_2__.logout)());
-    }
-
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Navbar));
-
-/***/ }),
-
 /***/ "./client/components/ProductCard.js":
 /*!******************************************!*\
   !*** ./client/components/ProductCard.js ***!
@@ -2312,6 +2382,109 @@ const mapDispatch = dispatch => {
 
 /***/ }),
 
+/***/ "./client/components/home.js":
+/*!***********************************!*\
+  !*** ./client/components/home.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Home": () => /* binding */ Home,
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+/**
+ * COMPONENT
+ */
+
+const Home = props => {
+  const {
+    username
+  } = props;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Welcome, ", username));
+};
+/**
+ * CONTAINER
+ */
+
+const mapState = state => {
+  return {
+    username: state.auth.username
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState)(Home));
+
+/***/ }),
+
+/***/ "./client/components/navbar.js":
+/*!*************************************!*\
+  !*** ./client/components/navbar.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+
+
+
+
+
+const Navbar = ({
+  handleClick,
+  isLoggedIn,
+  isAdmin
+}) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "City tickets"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, isAdmin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  to: "/admin"
+}, " Admin Home ") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  to: "/home"
+}, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+  href: "#",
+  onClick: handleClick
+}, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  to: "/login"
+}, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  to: "/signup"
+}, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null));
+/**
+ * CONTAINER
+ */
+
+
+const mapState = state => {
+  return {
+    isLoggedIn: !!state.auth.id,
+    isAdmin: state.auth.isAdmin
+  };
+};
+
+const mapDispatch = dispatch => {
+  return {
+    handleClick() {
+      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_2__.logout)());
+    }
+
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Navbar));
+
+/***/ }),
+
 /***/ "./client/history.js":
 /*!***************************!*\
   !*** ./client/history.js ***!
@@ -2376,12 +2549,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AuthForm */ "./client/components/AuthForm.js");
-/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Home */ "./client/components/Home.js");
+/* harmony import */ var _components_home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/home */ "./client/components/home.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
 /* harmony import */ var _components_AllProducts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/AllProducts */ "./client/components/AllProducts.js");
 /* harmony import */ var _components_SingleProduct__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/SingleProduct */ "./client/components/SingleProduct.js");
+/* harmony import */ var _components_Admin_AdminAllUsers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Admin/AdminAllUsers */ "./client/components/Admin/AdminAllUsers.js");
+/* harmony import */ var _components_Admin_Admin__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Admin/Admin */ "./client/components/Admin/Admin.js");
+
+
 
 
 
@@ -2401,34 +2578,43 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
   render() {
     const {
-      isLoggedIn
+      isLoggedIn,
+      isAdmin
     } = this.props;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "/home",
-      component: _components_Home__WEBPACK_IMPORTED_MODULE_3__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+      component: _components_home__WEBPACK_IMPORTED_MODULE_3__.default
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       exact: true,
       path: "/products/:id",
       component: _components_SingleProduct__WEBPACK_IMPORTED_MODULE_6__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       exact: true,
       path: "/products",
       component: _components_AllProducts__WEBPACK_IMPORTED_MODULE_5__.default
-    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+      exact: true,
+      path: "/admin/users",
+      component: _components_Admin_AdminAllUsers__WEBPACK_IMPORTED_MODULE_7__.default
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+      exact: true,
+      path: "/admin",
+      component: _components_Admin_Admin__WEBPACK_IMPORTED_MODULE_8__.default
+    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "/",
       exact: true,
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "/login",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       path: "/signup",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Signup
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       exact: true,
       path: "/products/:id",
       component: _components_SingleProduct__WEBPACK_IMPORTED_MODULE_6__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
       exact: true,
       path: "/products",
       component: _components_AllProducts__WEBPACK_IMPORTED_MODULE_5__.default
@@ -2442,10 +2628,12 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
 
 const mapState = state => {
+  console.log('route', state);
   return {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    isAdmin: state.auth.isAdmin
   };
 };
 
@@ -2460,7 +2648,95 @@ const mapDispatch = dispatch => {
 // when the url changes
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+
+/***/ }),
+
+/***/ "./client/store/admin_users.js":
+/*!*************************************!*\
+  !*** ./client/store/admin_users.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GET_USERS": () => /* binding */ GET_USERS,
+/* harmony export */   "_getUsers": () => /* binding */ _getUsers,
+/* harmony export */   "_deleteUser": () => /* binding */ _deleteUser,
+/* harmony export */   "_updateUser": () => /* binding */ _updateUser,
+/* harmony export */   "getUsers": () => /* binding */ getUsers,
+/* harmony export */   "deleteUser": () => /* binding */ deleteUser,
+/* harmony export */   "updateUser": () => /* binding */ updateUser,
+/* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
+
+const GET_USERS = 'GET_USERS';
+const DELETE_USER = 'DELETE_USER';
+const UPDATE_USER = 'UPDATE_USER';
+const _getUsers = users => ({
+  type: GET_USERS,
+  users
+});
+const _deleteUser = userId => ({
+  type: DELETE_USER,
+  userId
+});
+const _updateUser = user => ({
+  type: UPDATE_USER,
+  user
+});
+const getUsers = () => {
+  return async dispatch => {
+    try {
+      const {
+        data: users
+      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.get('/api/admin/users');
+      dispatch(_getUsers(users));
+    } catch (error) {
+      console.log('Failed to fetch users (GET /api/admin/users)', error);
+    }
+  };
+};
+const deleteUser = (id, history) => {
+  return async dispatch => {
+    try {
+      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.delete(`/api/admin/users/${id}`);
+      dispatch(_deleteUser(id));
+      history.push('/admin/users');
+    } catch (error) {
+      console.log(`Failed to delete user (DELETE /api/admin/users/${id})`, error);
+    }
+  };
+};
+const updateUser = (id, user, history) => {
+  return async dispatch => {
+    try {
+      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.put(`/api/admin/users/${id}`, user);
+      dispatch(_updateUser(user));
+      history.push(`/admin/users/${id}`);
+    } catch (error) {
+      console.log(`Failed to update user (PUT /api/admin/users/${id})`, error);
+    }
+  };
+};
+const initialState = [];
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(state = initialState, action) {
+  switch (action.type) {
+    case GET_USERS:
+      return action.users;
+
+    case DELETE_USER:
+      return state.filter(user => user.id !== action.userId);
+
+    case UPDATE_USER:
+      return state.map(user => user.id === action.user.id ? action.user : user);
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -2478,8 +2754,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "logout": () => /* binding */ logout,
 /* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
 /* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
 
 
@@ -2501,26 +2776,52 @@ const setAuth = auth => ({
  * THUNK CREATORS
  */
 
-
-const me = () => async dispatch => {
-  const token = window.localStorage.getItem(TOKEN);
-
+/* export const me = () => async dispatch => {
+  const token = window.localStorage.getItem(TOKEN)
   if (token) {
-    const res = await axios__WEBPACK_IMPORTED_MODULE_0___default().get('/auth/me', {
+    const res = await axios.get('/auth/me', {
       headers: {
         authorization: token
       }
-    });
-    return dispatch(setAuth(res.data));
+    })
+    return dispatch(setAuth(res.data))
   }
-};
+} */
+
+
+const me = () => async dispatch => {
+  const res = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.get('/auth/me');
+  return dispatch(setAuth(res.data));
+}; //get single user
+
+/* export const authenticate = (username, password, method) => async dispatch => {
+  try {
+    const res = await axios.post(`/auth/${method}`, {username, password})
+    window.localStorage.setItem(TOKEN, res.data.token)
+    dispatch(me())
+  } catch (authError) {
+    return dispatch(setAuth({error: authError}))
+  }
+} */
+
+/* export const authenticate = (username, password, method) => async dispatch => {
+  try {
+    const res = await axios.post(`/auth/${method}`, { username, password })
+    window.localStorage.setItem(TOKEN, res.data.token)
+    dispatch(me())
+  } catch (authError) {
+    return dispatch(setAuth({ error: authError }))
+  }
+} */
+
 const authenticate = (username, password, method) => async dispatch => {
   try {
-    const res = await axios__WEBPACK_IMPORTED_MODULE_0___default().post(`/auth/${method}`, {
+    const res = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.post(`/auth/${method}`, {
       username,
       password
     });
-    window.localStorage.setItem(TOKEN, res.data.token);
+    const token = res.data.token;
+    (0,_axios__WEBPACK_IMPORTED_MODULE_0__.setToken)(token);
     dispatch(me());
   } catch (authError) {
     return dispatch(setAuth({
@@ -2528,8 +2829,17 @@ const authenticate = (username, password, method) => async dispatch => {
     }));
   }
 };
+/* export const logout = () => {
+  window.localStorage.removeItem(TOKEN)
+  history.push('/login')
+  return {
+    type: SET_AUTH,
+    auth: {}
+  }
+} */
+
 const logout = () => {
-  window.localStorage.removeItem(TOKEN);
+  (0,_axios__WEBPACK_IMPORTED_MODULE_0__.removeToken)();
   _history__WEBPACK_IMPORTED_MODULE_1__.default.push('/login');
   return {
     type: SET_AUTH,
@@ -2552,6 +2862,39 @@ const logout = () => {
 
 /***/ }),
 
+/***/ "./client/store/axios.js":
+/*!*******************************!*\
+  !*** ./client/store/axios.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setToken": () => /* binding */ setToken,
+/* harmony export */   "removeToken": () => /* binding */ removeToken,
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+const TOKEN = 'token';
+let axiosInstance = axios__WEBPACK_IMPORTED_MODULE_0___default().create();
+axiosInstance.interceptors.request.use(config => {
+  const token = window.localStorage.getItem(TOKEN);
+  config.headers.authorization = token ? token : '';
+  return config;
+});
+const setToken = token => {
+  window.localStorage.setItem(TOKEN, token);
+};
+const removeToken = () => {
+  window.localStorage.removeItem(TOKEN);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axiosInstance);
+
+/***/ }),
+
 /***/ "./client/store/index.js":
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
@@ -2566,7 +2909,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "logout": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.logout,
 /* harmony export */   "me": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.me
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
@@ -2574,6 +2917,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth */ "./client/store/auth.js");
 /* harmony import */ var _products__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./products */ "./client/store/products.js");
 /* harmony import */ var _singleProduct__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./singleProduct */ "./client/store/singleProduct.js");
+/* harmony import */ var _isLoading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./isLoading */ "./client/store/isLoading.js");
+/* harmony import */ var _admin_users__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./admin_users */ "./client/store/admin_users.js");
 
 
 
@@ -2581,17 +2926,46 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_6__.combineReducers)({
+
+
+const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_8__.combineReducers)({
   auth: _auth__WEBPACK_IMPORTED_MODULE_3__.default,
   products: _products__WEBPACK_IMPORTED_MODULE_4__.default,
-  product: _singleProduct__WEBPACK_IMPORTED_MODULE_5__.default
+  product: _singleProduct__WEBPACK_IMPORTED_MODULE_5__.default,
+  isLoading: _isLoading__WEBPACK_IMPORTED_MODULE_6__.default,
+  users: _admin_users__WEBPACK_IMPORTED_MODULE_7__.default
 });
-const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_6__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
+const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_8__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
-const store = (0,redux__WEBPACK_IMPORTED_MODULE_6__.createStore)(reducer, middleware);
+const store = (0,redux__WEBPACK_IMPORTED_MODULE_8__.createStore)(reducer, middleware);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
+
+/***/ }),
+
+/***/ "./client/store/isLoading.js":
+/*!***********************************!*\
+  !*** ./client/store/isLoading.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ isLoading
+/* harmony export */ });
+/* harmony import */ var _admin_users__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./admin_users */ "./client/store/admin_users.js");
+
+function isLoading(state = true, action) {
+  switch (action.type) {
+    case _admin_users__WEBPACK_IMPORTED_MODULE_0__.GET_USERS:
+      return false;
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 

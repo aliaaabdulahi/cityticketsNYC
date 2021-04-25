@@ -5,8 +5,7 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const Home = props => {
-  const {username} = props
-
+  const { username} = props
   return (
     <div>
       <h3>Welcome, {username}</h3>
@@ -19,7 +18,7 @@ export const Home = props => {
  */
 const mapState = state => {
   return {
-    username: state.auth.username
+    username: state.auth.username,
   }
 }
 
