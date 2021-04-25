@@ -2031,18 +2031,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_admin_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/admin_users */ "./client/store/admin_users.js");
 /* harmony import */ var _AdminUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminUser */ "./client/components/Admin/AdminUser.js");
+/* harmony import */ var _client_store_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../client/store/auth */ "./client/store/auth.js");
+
 
 
 
 
 class AdminAllUsers extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleDelete = this.handleDelete.bind(this);
+    this.fetchAllUserHandle = this.fetchAllUserHandle.bind(this);
+    this.state = {
+      'loading': false
+    };
   }
 
   componentDidMount() {
+    console.log('did mount!'); // this.props.verifyMe()
+
     this.props.getUsers();
+  }
+
+  fetchAllUserHandle() {
+    this.setState({
+      loading: !this.state.loading
+    });
   }
 
   handleDelete(id) {
@@ -2090,6 +2104,7 @@ const mapState = state => {
 const mapDispatch = (dispatch, {
   history
 }) => ({
+  verifyMe: () => dispatch((0,_client_store_auth__WEBPACK_IMPORTED_MODULE_4__.me)()),
   getUsers: () => dispatch((0,_store_admin_users__WEBPACK_IMPORTED_MODULE_2__.getUsers)()),
   deleteUser: userId => dispatch((0,_store_admin_users__WEBPACK_IMPORTED_MODULE_2__.deleteUser)(userId, history))
 });
@@ -2161,6 +2176,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_products__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/products */ "./client/store/products.js");
 /* harmony import */ var _SingleProduct__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SingleProduct */ "./client/components/SingleProduct.js");
 /* harmony import */ var _ProductCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductCard */ "./client/components/ProductCard.js");
+/* harmony import */ var _Cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Cart */ "./client/components/Cart.js");
+
 
 
 
@@ -2171,19 +2188,39 @@ __webpack_require__.r(__webpack_exports__);
 class AllProducts extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectItems: []
+    };
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   componentDidMount() {
     this.props.loadProducts();
   }
 
+  handleAdd(evt) {
+    this.props.fetchAddItem(); //   const newItem = evt.target.name
+    //   // const existItems = this.state.selectItems
+    //   existItems.push(newItem)
+    //   this.setState({
+    //     selectItems: existItems
+    //   })
+  }
+
   render() {
     const products = this.props.products || [];
-    console.log(products);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, products ? products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_4__.default, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Cart__WEBPACK_IMPORTED_MODULE_5__.default, {
+      items: this.state.selectItems
+    }), products ? products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: product.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_4__.default, {
       product: product,
       key: product.id
-    })) : "loading");
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: this.handleAdd,
+      key: product.id,
+      name: product.name
+    }, "+"))) : "loading");
   }
 
 }
@@ -2294,6 +2331,44 @@ const Signup = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapSignup, m
 
 /***/ }),
 
+/***/ "./client/components/Cart.js":
+/*!***********************************!*\
+  !*** ./client/components/Cart.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Cart": () => /* binding */ Cart,
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const items = this.props.items || [];
+    const itemDict = {};
+
+    for (var i = 0; i < items.length; i++) {
+      itemDict[items[i]] = (itemDict[items[i]] || 0) + 1;
+    }
+
+    const keys = Object.keys(itemDict);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "My Cart"), keys.map(key => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, key), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, " Qty: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, itemDict[key]), " ")));
+  }
+
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cart);
+
+/***/ }),
+
 /***/ "./client/components/ProductCard.js":
 /*!******************************************!*\
   !*** ./client/components/ProductCard.js ***!
@@ -2317,7 +2392,9 @@ class ProductCard extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: this.props.product.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
       to: `/products/${this.props.product.id}`
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, this.props.product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
       src: this.props.product.image
@@ -2360,8 +2437,9 @@ class SingleProduct extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   render() {
-    console.log("singleproduct props", this.props);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, this.props.product.name);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: this.props.product.id
+    }, this.props.product.name);
   }
 
 }
@@ -2656,87 +2734,9 @@ const mapDispatch = dispatch => {
 /*!*************************************!*\
   !*** ./client/store/admin_users.js ***!
   \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GET_USERS": () => /* binding */ GET_USERS,
-/* harmony export */   "_getUsers": () => /* binding */ _getUsers,
-/* harmony export */   "_deleteUser": () => /* binding */ _deleteUser,
-/* harmony export */   "_updateUser": () => /* binding */ _updateUser,
-/* harmony export */   "getUsers": () => /* binding */ getUsers,
-/* harmony export */   "deleteUser": () => /* binding */ deleteUser,
-/* harmony export */   "updateUser": () => /* binding */ updateUser,
-/* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
-
-const GET_USERS = 'GET_USERS';
-const DELETE_USER = 'DELETE_USER';
-const UPDATE_USER = 'UPDATE_USER';
-const _getUsers = users => ({
-  type: GET_USERS,
-  users
-});
-const _deleteUser = userId => ({
-  type: DELETE_USER,
-  userId
-});
-const _updateUser = user => ({
-  type: UPDATE_USER,
-  user
-});
-const getUsers = () => {
-  return async dispatch => {
-    try {
-      const {
-        data: users
-      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.get('/api/admin/users');
-      dispatch(_getUsers(users));
-    } catch (error) {
-      console.log('Failed to fetch users (GET /api/admin/users)', error);
-    }
-  };
-};
-const deleteUser = (id, history) => {
-  return async dispatch => {
-    try {
-      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.delete(`/api/admin/users/${id}`);
-      dispatch(_deleteUser(id));
-      history.push('/admin/users');
-    } catch (error) {
-      console.log(`Failed to delete user (DELETE /api/admin/users/${id})`, error);
-    }
-  };
-};
-const updateUser = (id, user, history) => {
-  return async dispatch => {
-    try {
-      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.put(`/api/admin/users/${id}`, user);
-      dispatch(_updateUser(user));
-      history.push(`/admin/users/${id}`);
-    } catch (error) {
-      console.log(`Failed to update user (PUT /api/admin/users/${id})`, error);
-    }
-  };
-};
-const initialState = [];
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(state = initialState, action) {
-  switch (action.type) {
-    case GET_USERS:
-      return action.users;
-
-    case DELETE_USER:
-      return state.filter(user => user.id !== action.userId);
-
-    case UPDATE_USER:
-      return state.map(user => user.id === action.user.id ? action.user : user);
-
-    default:
-      return state;
-  }
-}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/resilient/Desktop/GraceShopper/client/store/admin_users.js: Unexpected token (27:3)\n\n\u001b[0m \u001b[90m 25 | \u001b[39m         console\u001b[33m.\u001b[39mlog(\u001b[32m'admin fetching users'\u001b[39m)\u001b[0m\n\u001b[0m \u001b[90m 26 | \u001b[39m         \u001b[36mconst\u001b[39m { data\u001b[33m:\u001b[39m users } \u001b[33m=\u001b[39m await axios\u001b[33m.\u001b[39mget(\u001b[32m'/api/admin/users'\u001b[39m)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 27 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 28 | \u001b[39m         \u001b[0m\n\u001b[0m \u001b[90m 29 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 30 | \u001b[39m         console\u001b[33m.\u001b[39mlog(\u001b[32m'here is data ==>'\u001b[39m\u001b[33m,\u001b[39m users)\u001b[0m\n    at Object._raise (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:9101:16)\n    at Object.jsxParseIdentifier (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4536:12)\n    at Object.jsxParseNamespacedName (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4546:23)\n    at Object.jsxParseElementName (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4557:21)\n    at Object.jsxParseOpeningElementAt (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4644:22)\n    at Object.jsxParseElementAt (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4677:33)\n    at Object.jsxParseElement (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4751:17)");
 
 /***/ }),
 
@@ -2744,154 +2744,9 @@ const initialState = [];
 /*!******************************!*\
   !*** ./client/store/auth.js ***!
   \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "me": () => /* binding */ me,
-/* harmony export */   "authenticate": () => /* binding */ authenticate,
-/* harmony export */   "logout": () => /* binding */ logout,
-/* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
-/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
-
-
-const TOKEN = 'token';
-/**
- * ACTION TYPES
- */
-
-const SET_AUTH = 'SET_AUTH';
-/**
- * ACTION CREATORS
- */
-
-const setAuth = auth => ({
-  type: SET_AUTH,
-  auth
-});
-/**
- * THUNK CREATORS
- */
-
-/* export const me = () => async dispatch => {
-  const token = window.localStorage.getItem(TOKEN)
-  if (token) {
-    const res = await axios.get('/auth/me', {
-      headers: {
-        authorization: token
-      }
-    })
-    return dispatch(setAuth(res.data))
-  }
-} */
-
-
-const me = () => async dispatch => {
-  const res = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.get('/auth/me');
-  return dispatch(setAuth(res.data));
-}; //get single user
-
-/* export const authenticate = (username, password, method) => async dispatch => {
-  try {
-    const res = await axios.post(`/auth/${method}`, {username, password})
-    window.localStorage.setItem(TOKEN, res.data.token)
-    dispatch(me())
-  } catch (authError) {
-    return dispatch(setAuth({error: authError}))
-  }
-} */
-
-/* export const authenticate = (username, password, method) => async dispatch => {
-  try {
-    const res = await axios.post(`/auth/${method}`, { username, password })
-    window.localStorage.setItem(TOKEN, res.data.token)
-    dispatch(me())
-  } catch (authError) {
-    return dispatch(setAuth({ error: authError }))
-  }
-} */
-
-const authenticate = (username, password, method) => async dispatch => {
-  try {
-    const res = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.post(`/auth/${method}`, {
-      username,
-      password
-    });
-    const token = res.data.token;
-    (0,_axios__WEBPACK_IMPORTED_MODULE_0__.setToken)(token);
-    dispatch(me());
-  } catch (authError) {
-    return dispatch(setAuth({
-      error: authError
-    }));
-  }
-};
-/* export const logout = () => {
-  window.localStorage.removeItem(TOKEN)
-  history.push('/login')
-  return {
-    type: SET_AUTH,
-    auth: {}
-  }
-} */
-
-const logout = () => {
-  (0,_axios__WEBPACK_IMPORTED_MODULE_0__.removeToken)();
-  _history__WEBPACK_IMPORTED_MODULE_1__.default.push('/login');
-  return {
-    type: SET_AUTH,
-    auth: {}
-  };
-};
-/**
- * REDUCER
- */
-
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(state = {}, action) {
-  switch (action.type) {
-    case SET_AUTH:
-      return action.auth;
-
-    default:
-      return state;
-  }
-}
-
-/***/ }),
-
-/***/ "./client/store/axios.js":
-/*!*******************************!*\
-  !*** ./client/store/axios.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setToken": () => /* binding */ setToken,
-/* harmony export */   "removeToken": () => /* binding */ removeToken,
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-const TOKEN = 'token';
-let axiosInstance = axios__WEBPACK_IMPORTED_MODULE_0___default().create();
-axiosInstance.interceptors.request.use(config => {
-  const token = window.localStorage.getItem(TOKEN);
-  config.headers.authorization = token ? token : '';
-  return config;
-});
-const setToken = token => {
-  window.localStorage.setItem(TOKEN, token);
-};
-const removeToken = () => {
-  window.localStorage.removeItem(TOKEN);
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axiosInstance);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/resilient/Desktop/GraceShopper/client/store/auth.js: Unexpected token (20:3)\n\n\u001b[0m \u001b[90m 18 | \u001b[39m\u001b[90m */\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 19 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 21 | \u001b[39m\u001b[90m/* export const me = () => async dispatch => {\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 | \u001b[39m\u001b[90m=======\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m\u001b[90mexport const me = () => async dispatch => {\u001b[39m\u001b[0m\n    at Object._raise (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:9101:16)\n    at Object.jsxParseIdentifier (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4536:12)\n    at Object.jsxParseNamespacedName (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4546:23)\n    at Object.jsxParseElementName (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4557:21)\n    at Object.jsxParseOpeningElementAt (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4644:22)\n    at Object.jsxParseElementAt (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4677:33)\n    at Object.jsxParseElement (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4751:17)");
 
 /***/ }),
 
@@ -2904,10 +2759,7 @@ const removeToken = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__,
-/* harmony export */   "authenticate": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.authenticate,
-/* harmony export */   "logout": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.logout,
-/* harmony export */   "me": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.me
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");

@@ -2,19 +2,23 @@ const router = require('express').Router()
 const { models: { User, Order, Product } } = require('../db')
 const { requireToken, isAdmin } = require('./gatekeepingMiddleware')
 
-module.exports = router
 
 router.get("/users", requireToken, isAdmin, async (req, res, next) => {
   try {
+    console.log('in ADMIN-GET-USERS account, trying to fetch')
     const users = await User.findAll({
       attributes: ['id', 'username', 'isAdmin']
     })
-    res.json(users)
+    console.log('fetch completed', users)
+    res.send(users)
 
   } catch (err) {
     next(err)
   }
 })
+
+
+
 
 router.get("/users/:id", requireToken, isAdmin, async (req, res, next) => {
   try {
@@ -156,3 +160,5 @@ router.delete("/products/:id", requireToken, isAdmin, async (req, res, next) => 
 
 
 
+
+module.exports = router

@@ -2,15 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getUsers, deleteUser } from '../../store/admin_users';
 import AdminUser from './AdminUser';
+import { me } from "/client/store/auth";
 
 export class AdminAllUsers extends React.Component {
-   constructor() {
-      super()
+   constructor(props) {
+      super(props)
       this.handleDelete = this.handleDelete.bind(this)
+      this.fetchAllUserHandle = this.fetchAllUserHandle.bind(this)
+      this.state = {
+         'loading':false
+      }
    }
 
    componentDidMount() {
+      console.log('did mount!')
+      // this.props.verifyMe()
       this.props.getUsers()
+   }
+
+   fetchAllUserHandle(){
+      this.setState({loading:!this.state.loading})
    }
 
    handleDelete(id) {
@@ -30,9 +41,11 @@ export class AdminAllUsers extends React.Component {
 
       return (
          <div>
+          {/* <button onClick={this.fetchAllUserHandle}></button> */}
             <div>
                {
-                  (Array.isArray(users) && users.length === 0) ? (
+                  (
+                     Array.isArray(users) && users.length === 0) ? (
                      <div className='main'>
                         <h4>There are no users registered in the database.</h4>
                      </div>
@@ -70,6 +83,7 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch, { history }) => ({
+   verifyMe: () => dispatch(me()),
    getUsers: () => dispatch(getUsers()),
    deleteUser: (userId) => dispatch(deleteUser(userId, history))
 });
