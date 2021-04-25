@@ -2670,8 +2670,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "updateUser": () => /* binding */ updateUser,
 /* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
 
 const GET_USERS = 'GET_USERS';
 const DELETE_USER = 'DELETE_USER';
@@ -2693,7 +2692,7 @@ const getUsers = () => {
     try {
       const {
         data: users
-      } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/admin/users');
+      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.get('/api/admin/users');
       dispatch(_getUsers(users));
     } catch (error) {
       console.log('Failed to fetch users (GET /api/admin/users)', error);
@@ -2703,7 +2702,7 @@ const getUsers = () => {
 const deleteUser = (id, history) => {
   return async dispatch => {
     try {
-      await axios__WEBPACK_IMPORTED_MODULE_0___default().delete(`/api/admin/users/${id}`);
+      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.delete(`/api/admin/users/${id}`);
       dispatch(_deleteUser(id));
       history.push('/admin/users');
     } catch (error) {
@@ -2714,7 +2713,7 @@ const deleteUser = (id, history) => {
 const updateUser = (id, user, history) => {
   return async dispatch => {
     try {
-      await axios__WEBPACK_IMPORTED_MODULE_0___default().put(`/api/admin/users/${id}`, user);
+      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.put(`/api/admin/users/${id}`, user);
       dispatch(_updateUser(user));
       history.push(`/admin/users/${id}`);
     } catch (error) {
@@ -2755,8 +2754,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "logout": () => /* binding */ logout,
 /* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
 /* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
 
 
@@ -2778,27 +2776,52 @@ const setAuth = auth => ({
  * THUNK CREATORS
  */
 
-
-const me = () => async dispatch => {
-  const token = window.localStorage.getItem(TOKEN);
-
+/* export const me = () => async dispatch => {
+  const token = window.localStorage.getItem(TOKEN)
   if (token) {
-    const res = await axios__WEBPACK_IMPORTED_MODULE_0___default().get('/auth/me', {
+    const res = await axios.get('/auth/me', {
       headers: {
         authorization: token
       }
-    });
-    return dispatch(setAuth(res.data));
+    })
+    return dispatch(setAuth(res.data))
   }
+} */
+
+
+const me = () => async dispatch => {
+  const res = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.get('/auth/me');
+  return dispatch(setAuth(res.data));
 }; //get single user
+
+/* export const authenticate = (username, password, method) => async dispatch => {
+  try {
+    const res = await axios.post(`/auth/${method}`, {username, password})
+    window.localStorage.setItem(TOKEN, res.data.token)
+    dispatch(me())
+  } catch (authError) {
+    return dispatch(setAuth({error: authError}))
+  }
+} */
+
+/* export const authenticate = (username, password, method) => async dispatch => {
+  try {
+    const res = await axios.post(`/auth/${method}`, { username, password })
+    window.localStorage.setItem(TOKEN, res.data.token)
+    dispatch(me())
+  } catch (authError) {
+    return dispatch(setAuth({ error: authError }))
+  }
+} */
 
 const authenticate = (username, password, method) => async dispatch => {
   try {
-    const res = await axios__WEBPACK_IMPORTED_MODULE_0___default().post(`/auth/${method}`, {
+    const res = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.post(`/auth/${method}`, {
       username,
       password
     });
-    window.localStorage.setItem(TOKEN, res.data.token);
+    const token = res.data.token;
+    (0,_axios__WEBPACK_IMPORTED_MODULE_0__.setToken)(token);
     dispatch(me());
   } catch (authError) {
     return dispatch(setAuth({
@@ -2806,8 +2829,17 @@ const authenticate = (username, password, method) => async dispatch => {
     }));
   }
 };
+/* export const logout = () => {
+  window.localStorage.removeItem(TOKEN)
+  history.push('/login')
+  return {
+    type: SET_AUTH,
+    auth: {}
+  }
+} */
+
 const logout = () => {
-  window.localStorage.removeItem(TOKEN);
+  (0,_axios__WEBPACK_IMPORTED_MODULE_0__.removeToken)();
   _history__WEBPACK_IMPORTED_MODULE_1__.default.push('/login');
   return {
     type: SET_AUTH,
@@ -2827,6 +2859,39 @@ const logout = () => {
       return state;
   }
 }
+
+/***/ }),
+
+/***/ "./client/store/axios.js":
+/*!*******************************!*\
+  !*** ./client/store/axios.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setToken": () => /* binding */ setToken,
+/* harmony export */   "removeToken": () => /* binding */ removeToken,
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+const TOKEN = 'token';
+let axiosInstance = axios__WEBPACK_IMPORTED_MODULE_0___default().create();
+axiosInstance.interceptors.request.use(config => {
+  const token = window.localStorage.getItem(TOKEN);
+  config.headers.authorization = token ? token : '';
+  return config;
+});
+const setToken = token => {
+  window.localStorage.setItem(TOKEN, token);
+};
+const removeToken = () => {
+  window.localStorage.removeItem(TOKEN);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axiosInstance);
 
 /***/ }),
 

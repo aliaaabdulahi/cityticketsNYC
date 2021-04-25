@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from './axios'
 
 export const GET_USERS = 'GET_USERS'
 const DELETE_USER = 'DELETE_USER'
@@ -19,11 +19,11 @@ export const _updateUser = (user) => ({
    user
 })
 
-
 export const getUsers = () => {
    return async (dispatch) => {
       try {
          const { data: users } = await axios.get('/api/admin/users')
+         
          dispatch(_getUsers(users))
       } catch (error) {
          console.log('Failed to fetch users (GET /api/admin/users)', error)
