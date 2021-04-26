@@ -1,28 +1,22 @@
-import axios, { removeToken, setToken } from './axios'
-import history from '../history'
-
-const TOKEN = 'token'
+import axios, { removeToken, setToken } from "./axios";
+import history from "../history";
 
 /**
  * ACTION TYPES
  */
-const SET_AUTH = 'SET_AUTH'
+const SET_AUTH = "SET_AUTH";
 
 /**
  * ACTION CREATORS
  */
-const setAuth = auth => ({type: SET_AUTH, auth})
+const setAuth = (auth) => ({ type: SET_AUTH, auth });
 
 /**
  * THUNK CREATORS
  */
 
-<<<<<<< HEAD
-/* export const me = () => async dispatch => {
-=======
-export const me = () => async dispatch => {
+/*export const me = () => async dispatch => {
 
->>>>>>> 88b56445e759141684a7681b1821775f9e7d7bc9
   const token = window.localStorage.getItem(TOKEN)
   
 
@@ -37,14 +31,11 @@ export const me = () => async dispatch => {
   }
 } */
 
+export const me = () => async (dispatch) => {
+  const res = await axios.get("/auth/me");
 
-export const me = () => async dispatch => {
- 
-    const res = await axios.get('/auth/me')
-    
-    return dispatch(setAuth(res.data))
-  
-}
+  return dispatch(setAuth(res.data));
+};
 
 //get single user
 
@@ -68,16 +59,18 @@ export const me = () => async dispatch => {
   }
 } */
 
-export const authenticate = (username, password, method) => async dispatch => {
+export const authenticate = (username, password, method) => async (
+  dispatch
+) => {
   try {
-    const res = await axios.post(`/auth/${method}`, { username, password })
-    const token = res.data.token
-    setToken(token)
-    dispatch(me())
+    const res = await axios.post(`/auth/${method}`, { username, password });
+    const token = res.data.token;
+    setToken(token);
+    dispatch(me());
   } catch (authError) {
-    return dispatch(setAuth({ error: authError }))
+    return dispatch(setAuth({ error: authError }));
   }
-}
+};
 
 /* export const logout = () => {
   window.localStorage.removeItem(TOKEN)
@@ -88,22 +81,22 @@ export const authenticate = (username, password, method) => async dispatch => {
   }
 } */
 export const logout = () => {
-  removeToken()
-  history.push('/login')
+  removeToken();
+  history.push("/login");
   return {
     type: SET_AUTH,
-    auth: {}
-  }
-}
+    auth: {},
+  };
+};
 
 /**
  * REDUCER
  */
-export default function(state = {}, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
-      return action.auth
+      return action.auth;
     default:
-      return state
+      return state;
   }
 }

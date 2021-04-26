@@ -8,21 +8,20 @@ export class AdminAllUsers extends React.Component {
    constructor(props) {
       super(props)
       this.handleDelete = this.handleDelete.bind(this)
-      this.fetchAllUserHandle = this.fetchAllUserHandle.bind(this)
-      this.state = {
-         'loading':false
-      }
+     // this.fetchAllUserHandle = this.fetchAllUserHandle.bind(this)
+      // this.state = {
+      //    'loading':false
+      // }
    }
 
    componentDidMount() {
-      console.log('did mount!')
       // this.props.verifyMe()
       this.props.getUsers()
    }
 
-   fetchAllUserHandle(){
-      this.setState({loading:!this.state.loading})
-   }
+   // fetchAllUserHandle(){
+   //    this.setState({loading:!this.state.loading})
+   // }
 
    handleDelete(id) {
       this.props.deleteUser(id)
@@ -31,13 +30,13 @@ export class AdminAllUsers extends React.Component {
    render() {
       const { users, isLoading } = this.props
 
-      // if (isLoading) {
-      //    return (
-      //       <div>
-      //          <h1>Loading Users!</h1>
-      //       </div>
-      //    )
-      // }
+      if (isLoading) {
+         return (
+            <div>
+               <h1>Loading Users!</h1>
+            </div>
+         )
+      }
 
       return (
          <div>
@@ -75,9 +74,8 @@ export class AdminAllUsers extends React.Component {
 }
 
 const mapState = (state) => {
-   console.log('state',state)
    return {
-      users: state.users, //users = []
+      users: state.users, 
       isLoading: state.isLoading
    }
 }
@@ -90,4 +88,3 @@ const mapDispatch = (dispatch, { history }) => ({
 
 export default connect(mapState, mapDispatch)(AdminAllUsers);
 
-//axios can't fetch allUsers ??

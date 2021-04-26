@@ -5,19 +5,16 @@ const { requireToken, isAdmin } = require('./gatekeepingMiddleware')
 
 router.get("/users", requireToken, isAdmin, async (req, res, next) => {
   try {
-    console.log('in ADMIN-GET-USERS account, trying to fetch')
     const users = await User.findAll({
       attributes: ['id', 'username', 'isAdmin']
     })
-    console.log('fetch completed', users)
+    
     res.send(users)
 
   } catch (err) {
     next(err)
   }
 })
-
-
 
 
 router.get("/users/:id", requireToken, isAdmin, async (req, res, next) => {
@@ -141,9 +138,11 @@ router.put("/products/:id", requireToken, isAdmin, async (req, res, next) => {
 })
 
 
-router.delete("/products/:id", requireToken, isAdmin, async (req, res, next) => {
+router.delete("/products/:productId", requireToken, isAdmin, async (req, res, next) => {
+  console.log('req.params',req.params)
   try {
-    const product = await Product.findByPk(req.params.id)
+    const product = await Product.findByPk(req.params.productId)
+    
     if (product) {
       await product.destroy()
       res.sendStatus(204)

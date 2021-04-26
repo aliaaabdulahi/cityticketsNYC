@@ -1,32 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AdminUser = (props) => {
+const AdminProduct= (props) => {
 
-   const { username, id, isAdmin} = props.user
+   const { name, description, id } = props.product
    const { handleDelete } = props
 
    return (
       <div>
          <div className='card-30'>
-            <Link to={`/admin/users/${id}`}>
-               <h4>{username}</h4>
+            <Link to={`/admin/products/${id}`}>
+               <h4>{name}</h4>
             </Link>
             <p>ID: {id}</p>
          </div>
          <div className='card-70'>
-            <p><strong>{isAdmin === true ? "admin" : " "}</strong></p>
+            <p><strong>Description: </strong>{description}</p>
          </div>
          <button
             className='remove-button'
             onClick={() => handleDelete(id)}
-         > Delete User
-      </button>
-         <Link to={`/admin/users/${id}/edit`}>
-            <button> Edit User </button>
+         >  Delete Product
+         </button>
+         <Link to={`/admin/products/${id}/edit`}>
+            <button> Edit Product </button>
          </Link>
       </div>
    );
 };
 
-export default AdminUser
+export default AdminProduct

@@ -1,6 +1,8 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
+const cookieParser = require('cookie-parser');
+
 const app = express()
 module.exports = app
 
@@ -9,6 +11,9 @@ app.use(morgan('dev'))
 
 // body parsing middleware
 app.use(express.json())
+
+// cookie parser middleware
+app.use(cookieParser());
 
 // auth and api routes
 app.use('/auth', require('./auth'))
@@ -41,3 +46,5 @@ app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(err.status || 500).send(err.message || 'Internal server error.')
 })
+
+

@@ -1998,9 +1998,11 @@ const Admin = props => {
   const {
     username
   } = props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Welcome Admin ", username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Welcome Admin ", username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     to: "/admin/users"
-  }, " All Users "));
+  }, " All Users ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "/admin/products"
+  }, " All Products "))));
 };
 
 const mapState = state => {
@@ -2011,6 +2013,88 @@ const mapState = state => {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState)(Admin));
+
+/***/ }),
+
+/***/ "./client/components/Admin/AdminAllProducts.js":
+/*!*****************************************************!*\
+  !*** ./client/components/Admin/AdminAllProducts.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AdminAllProducts": () => /* binding */ AdminAllProducts,
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_admin_products__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/admin_products */ "./client/store/admin_products.js");
+/* harmony import */ var _AdminProduct__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminProduct */ "./client/components/Admin/AdminProduct.js");
+
+
+
+ // import { me } from "/client/store/auth";
+
+class AdminAllProducts extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getProducts();
+  }
+
+  handleDelete(id) {
+    this.props.deleteProduct(id);
+  }
+
+  render() {
+    const {
+      adminProducts,
+      isLoading
+    } = this.props;
+
+    if (isLoading) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Loading Products!"));
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, Array.isArray(adminProducts) && adminProducts.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "main"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "There are no products in the database.")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "all-items-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, " ALL Products: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, adminProducts.length, " products in the database")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "all-items-row"
+    }, adminProducts.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "all-items-col",
+      key: product.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AdminProduct__WEBPACK_IMPORTED_MODULE_3__.default, {
+      product: product,
+      handleDelete: this.handleDelete
+    }))))));
+  }
+
+}
+
+const mapState = state => {
+  console.log('products state: ', state.adminProducts);
+  return {
+    adminProducts: state.adminProducts,
+    isLoading: state.isLoading
+  };
+};
+
+const mapDispatch = (dispatch, {
+  history
+}) => ({
+  getProducts: () => dispatch((0,_store_admin_products__WEBPACK_IMPORTED_MODULE_2__.getProducts)()),
+  deleteProduct: productId => dispatch((0,_store_admin_products__WEBPACK_IMPORTED_MODULE_2__.deleteProduct)(productId, history))
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(AdminAllProducts));
 
 /***/ }),
 
@@ -2031,7 +2115,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_admin_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/admin_users */ "./client/store/admin_users.js");
 /* harmony import */ var _AdminUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminUser */ "./client/components/Admin/AdminUser.js");
-/* harmony import */ var _client_store_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../client/store/auth */ "./client/store/auth.js");
+/* harmony import */ var _client_store_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../client/store/auth */ "./client/store/auth.js");
 
 
 
@@ -2040,24 +2124,19 @@ __webpack_require__.r(__webpack_exports__);
 class AdminAllUsers extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
   constructor(props) {
     super(props);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.fetchAllUserHandle = this.fetchAllUserHandle.bind(this);
-    this.state = {
-      'loading': false
-    };
+    this.handleDelete = this.handleDelete.bind(this); // this.fetchAllUserHandle = this.fetchAllUserHandle.bind(this)
+    // this.state = {
+    //    'loading':false
+    // }
   }
 
   componentDidMount() {
-    console.log('did mount!'); // this.props.verifyMe()
-
+    // this.props.verifyMe()
     this.props.getUsers();
-  }
+  } // fetchAllUserHandle(){
+  //    this.setState({loading:!this.state.loading})
+  // }
 
-  fetchAllUserHandle() {
-    this.setState({
-      loading: !this.state.loading
-    });
-  }
 
   handleDelete(id) {
     this.props.deleteUser(id);
@@ -2067,13 +2146,11 @@ class AdminAllUsers extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compon
     const {
       users,
       isLoading
-    } = this.props; // if (isLoading) {
-    //    return (
-    //       <div>
-    //          <h1>Loading Users!</h1>
-    //       </div>
-    //    )
-    // }
+    } = this.props;
+
+    if (isLoading) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Loading Users!"));
+    }
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, Array.isArray(users) && users.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "main"
@@ -2093,10 +2170,8 @@ class AdminAllUsers extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compon
 }
 
 const mapState = state => {
-  console.log('state', state);
   return {
     users: state.users,
-    //users = []
     isLoading: state.isLoading
   };
 };
@@ -2109,7 +2184,116 @@ const mapDispatch = (dispatch, {
   deleteUser: userId => dispatch((0,_store_admin_users__WEBPACK_IMPORTED_MODULE_2__.deleteUser)(userId, history))
 });
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(AdminAllUsers)); //axios can't fetch allUsers ??
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(AdminAllUsers));
+
+/***/ }),
+
+/***/ "./client/components/Admin/AdminEditProduct.js":
+/*!*****************************************************!*\
+  !*** ./client/components/Admin/AdminEditProduct.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // import { connect } from 'react-redux'
+// import { Link } from 'react-router-dom'
+
+class AdminEditProduct extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
+  // not finished
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Update Product"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Product ID: ", " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "col-20"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      htmlFor: "name"
+    }, "Event Name:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "col-70"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      name: "name",
+      required: true
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "col-20"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      htmlFor: "description"
+    }, "Description:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "col-70"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      name: "description",
+      required: true
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "col-20"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      htmlFor: "imageUrl"
+    }, "imageUrl:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "col-70"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      name: "imageUrl",
+      type: "text"
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "form-button-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      type: "submit"
+    }, "Save Change "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Cancel")))));
+  }
+
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminEditProduct);
+
+/***/ }),
+
+/***/ "./client/components/Admin/AdminProduct.js":
+/*!*************************************************!*\
+  !*** ./client/components/Admin/AdminProduct.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+const AdminProduct = props => {
+  const {
+    name,
+    description,
+    id
+  } = props.product;
+  const {
+    handleDelete
+  } = props;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "card-30"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: `/admin/products/${id}`
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "ID: ", id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "card-70"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, "Description: "), description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "remove-button",
+    onClick: () => handleDelete(id)
+  }, "  Delete Product"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: `/admin/products/${id}/edit`
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, " Edit Product ")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminProduct);
 
 /***/ }),
 
@@ -2139,9 +2323,7 @@ const AdminUser = props => {
   const {
     handleDelete
   } = props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "single-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "card-30"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: `/admin/users/${id}`
@@ -2150,7 +2332,7 @@ const AdminUser = props => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", null, isAdmin === true ? "admin" : " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "remove-button",
     onClick: () => handleDelete(id)
-  }, " X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, " Delete User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: `/admin/users/${id}/edit`
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, " Edit User ")));
 };
@@ -2214,11 +2396,9 @@ class AllProducts extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     }), products ? products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       key: product.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_4__.default, {
-      product: product,
-      key: product.id
+      product: product
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       onClick: this.handleAdd,
-      key: product.id,
       name: product.name
     }, "+"))) : "loading");
   }
@@ -2627,14 +2807,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AuthForm */ "./client/components/AuthForm.js");
 /* harmony import */ var _components_home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/home */ "./client/components/home.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
 /* harmony import */ var _components_AllProducts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/AllProducts */ "./client/components/AllProducts.js");
 /* harmony import */ var _components_SingleProduct__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/SingleProduct */ "./client/components/SingleProduct.js");
 /* harmony import */ var _components_Admin_AdminAllUsers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Admin/AdminAllUsers */ "./client/components/Admin/AdminAllUsers.js");
-/* harmony import */ var _components_Admin_Admin__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Admin/Admin */ "./client/components/Admin/Admin.js");
+/* harmony import */ var _components_Admin_AdminAllProducts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Admin/AdminAllProducts */ "./client/components/Admin/AdminAllProducts.js");
+/* harmony import */ var _components_Admin_Admin__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Admin/Admin */ "./client/components/Admin/Admin.js");
+/* harmony import */ var _components_Admin_AdminEditProduct__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Admin/AdminEditProduct */ "./client/components/Admin/AdminEditProduct.js");
+
+
 
 
 
@@ -2659,40 +2843,48 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       isLoggedIn,
       isAdmin
     } = this.props;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "/home",
       component: _components_home__WEBPACK_IMPORTED_MODULE_3__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       exact: true,
       path: "/products/:id",
       component: _components_SingleProduct__WEBPACK_IMPORTED_MODULE_6__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       exact: true,
       path: "/products",
       component: _components_AllProducts__WEBPACK_IMPORTED_MODULE_5__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       exact: true,
       path: "/admin/users",
       component: _components_Admin_AdminAllUsers__WEBPACK_IMPORTED_MODULE_7__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      exact: true,
+      path: "/admin/products",
+      component: _components_Admin_AdminAllProducts__WEBPACK_IMPORTED_MODULE_8__.default
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      exact: true,
+      path: "/admin/products/:id/edit",
+      component: _components_Admin_AdminEditProduct__WEBPACK_IMPORTED_MODULE_10__.default
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       exact: true,
       path: "/admin",
-      component: _components_Admin_Admin__WEBPACK_IMPORTED_MODULE_8__.default
-    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+      component: _components_Admin_Admin__WEBPACK_IMPORTED_MODULE_9__.default
+    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "/",
       exact: true,
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "/login",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       path: "/signup",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Signup
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       exact: true,
       path: "/products/:id",
       component: _components_SingleProduct__WEBPACK_IMPORTED_MODULE_6__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
       exact: true,
       path: "/products",
       component: _components_AllProducts__WEBPACK_IMPORTED_MODULE_5__.default
@@ -2706,7 +2898,6 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
 
 const mapState = state => {
-  console.log('route', state);
   return {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
@@ -2726,7 +2917,95 @@ const mapDispatch = dispatch => {
 // when the url changes
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+
+/***/ }),
+
+/***/ "./client/store/admin_products.js":
+/*!****************************************!*\
+  !*** ./client/store/admin_products.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GET_PRODUCTS": () => /* binding */ GET_PRODUCTS,
+/* harmony export */   "_getProducts": () => /* binding */ _getProducts,
+/* harmony export */   "_deleteProduct": () => /* binding */ _deleteProduct,
+/* harmony export */   "_updatePoduct": () => /* binding */ _updatePoduct,
+/* harmony export */   "getProducts": () => /* binding */ getProducts,
+/* harmony export */   "deleteProduct": () => /* binding */ deleteProduct,
+/* harmony export */   "updateProduct": () => /* binding */ updateProduct,
+/* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
+
+const GET_PRODUCTS = "GET_PRODUCTS";
+const DELETE_PRODUCT = "DELETE_PRODUCT";
+const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+const _getProducts = products => ({
+  type: GET_PRODUCTS,
+  products
+});
+const _deleteProduct = productId => ({
+  type: DELETE_PRODUCT,
+  productId
+});
+const _updatePoduct = product => ({
+  type: UPDATE_PRODUCT,
+  product
+});
+const getProducts = () => {
+  return async dispatch => {
+    try {
+      const {
+        data: products
+      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.get("/api/admin/products");
+      dispatch(_getProducts(products));
+    } catch (error) {
+      console.log("Failed to fetch products (GET /api/admin/products)", error);
+    }
+  };
+};
+const deleteProduct = (id, history) => {
+  return async dispatch => {
+    try {
+      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.delete(`/api/admin/products/${id}`);
+      dispatch(_deleteProduct(id));
+      history.push("/admin/products");
+    } catch (error) {
+      console.log(`Failed to delete product (DELETE /api/admin/products/${id})`, error);
+    }
+  };
+};
+const updateProduct = (id, product, history) => {
+  return async dispatch => {
+    try {
+      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.put(`/api/admin/products/${id}`, product);
+      dispatch(_updateProduct(product));
+      history.push(`/admin/products/${id}`);
+    } catch (error) {
+      console.log(`Failed to update product (PUT /api/admin/products/${id})`, error);
+    }
+  };
+};
+const initialState = [];
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(state = initialState, action) {
+  switch (action.type) {
+    case GET_PRODUCTS:
+      return action.products;
+
+    case DELETE_PRODUCT:
+      return state.filter(product => product.id !== action.productId);
+
+    case UPDATE_PRODUCT:
+      return state.map(product => product.id === action.product.id ? action.product : product);
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -2734,9 +3013,87 @@ const mapDispatch = dispatch => {
 /*!*************************************!*\
   !*** ./client/store/admin_users.js ***!
   \*************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/resilient/Desktop/GraceShopper/client/store/admin_users.js: Unexpected token (27:3)\n\n\u001b[0m \u001b[90m 25 | \u001b[39m         console\u001b[33m.\u001b[39mlog(\u001b[32m'admin fetching users'\u001b[39m)\u001b[0m\n\u001b[0m \u001b[90m 26 | \u001b[39m         \u001b[36mconst\u001b[39m { data\u001b[33m:\u001b[39m users } \u001b[33m=\u001b[39m await axios\u001b[33m.\u001b[39mget(\u001b[32m'/api/admin/users'\u001b[39m)\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 27 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 28 | \u001b[39m         \u001b[0m\n\u001b[0m \u001b[90m 29 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 30 | \u001b[39m         console\u001b[33m.\u001b[39mlog(\u001b[32m'here is data ==>'\u001b[39m\u001b[33m,\u001b[39m users)\u001b[0m\n    at Object._raise (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:9101:16)\n    at Object.jsxParseIdentifier (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4536:12)\n    at Object.jsxParseNamespacedName (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4546:23)\n    at Object.jsxParseElementName (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4557:21)\n    at Object.jsxParseOpeningElementAt (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4644:22)\n    at Object.jsxParseElementAt (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4677:33)\n    at Object.jsxParseElement (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4751:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GET_USERS": () => /* binding */ GET_USERS,
+/* harmony export */   "_getUsers": () => /* binding */ _getUsers,
+/* harmony export */   "_deleteUser": () => /* binding */ _deleteUser,
+/* harmony export */   "_updateUser": () => /* binding */ _updateUser,
+/* harmony export */   "getUsers": () => /* binding */ getUsers,
+/* harmony export */   "deleteUser": () => /* binding */ deleteUser,
+/* harmony export */   "updateUser": () => /* binding */ updateUser,
+/* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
+
+const GET_USERS = "GET_USERS";
+const DELETE_USER = "DELETE_USER";
+const UPDATE_USER = "UPDATE_USER";
+const _getUsers = users => ({
+  type: GET_USERS,
+  users
+});
+const _deleteUser = userId => ({
+  type: DELETE_USER,
+  userId
+});
+const _updateUser = user => ({
+  type: UPDATE_USER,
+  user
+});
+const getUsers = () => {
+  return async dispatch => {
+    try {
+      const {
+        data: users
+      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.get("/api/admin/users");
+      dispatch(_getUsers(users));
+    } catch (error) {
+      console.log("Failed to fetch users (GET /api/admin/users)", error);
+    }
+  };
+};
+const deleteUser = (id, history) => {
+  return async dispatch => {
+    try {
+      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.delete(`/api/admin/users/${id}`);
+      dispatch(_deleteUser(id));
+      history.push("/admin/users");
+    } catch (error) {
+      console.log(`Failed to delete user (DELETE /api/admin/users/${id})`, error);
+    }
+  };
+};
+const updateUser = (id, user, history) => {
+  return async dispatch => {
+    try {
+      await _axios__WEBPACK_IMPORTED_MODULE_0__.default.put(`/api/admin/users/${id}`, user);
+      dispatch(_updateUser(user));
+      history.push(`/admin/users/${id}`);
+    } catch (error) {
+      console.log(`Failed to update user (PUT /api/admin/users/${id})`, error);
+    }
+  };
+};
+const initialState = [];
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(state = initialState, action) {
+  switch (action.type) {
+    case GET_USERS:
+      return action.users;
+
+    case DELETE_USER:
+      return state.filter(user => user.id !== action.userId);
+
+    case UPDATE_USER:
+      return state.map(user => user.id === action.user.id ? action.user : user);
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -2744,9 +3101,157 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
 /*!******************************!*\
   !*** ./client/store/auth.js ***!
   \******************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/resilient/Desktop/GraceShopper/client/store/auth.js: Unexpected token (20:3)\n\n\u001b[0m \u001b[90m 18 | \u001b[39m\u001b[90m */\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 19 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 21 | \u001b[39m\u001b[90m/* export const me = () => async dispatch => {\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 | \u001b[39m\u001b[90m=======\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m\u001b[90mexport const me = () => async dispatch => {\u001b[39m\u001b[0m\n    at Object._raise (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:9101:16)\n    at Object.jsxParseIdentifier (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4536:12)\n    at Object.jsxParseNamespacedName (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4546:23)\n    at Object.jsxParseElementName (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4557:21)\n    at Object.jsxParseOpeningElementAt (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4644:22)\n    at Object.jsxParseElementAt (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4677:33)\n    at Object.jsxParseElement (/Users/resilient/Desktop/GraceShopper/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4751:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "me": () => /* binding */ me,
+/* harmony export */   "authenticate": () => /* binding */ authenticate,
+/* harmony export */   "logout": () => /* binding */ logout,
+/* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
+/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
+
+
+/**
+ * ACTION TYPES
+ */
+
+const SET_AUTH = "SET_AUTH";
+/**
+ * ACTION CREATORS
+ */
+
+const setAuth = auth => ({
+  type: SET_AUTH,
+  auth
+});
+/**
+ * THUNK CREATORS
+ */
+
+/*export const me = () => async dispatch => {
+
+  const token = window.localStorage.getItem(TOKEN)
+  
+
+  if (token) {
+    const res = await axios.get('/auth/me', {
+      headers: {
+        authorization: token
+      }
+    })
+    console.log('here is your res', token)
+    return dispatch(setAuth(res.data))
+  }
+} */
+
+
+const me = () => async dispatch => {
+  const res = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.get("/auth/me");
+  return dispatch(setAuth(res.data));
+}; //get single user
+
+/* export const authenticate = (username, password, method) => async dispatch => {
+  try {
+    const res = await axios.post(`/auth/${method}`, {username, password})
+    window.localStorage.setItem(TOKEN, res.data.token)
+    dispatch(me())
+  } catch (authError) {
+    return dispatch(setAuth({error: authError}))
+  }
+} */
+
+/* export const authenticate = (username, password, method) => async dispatch => {
+  try {
+    const res = await axios.post(`/auth/${method}`, { username, password })
+    window.localStorage.setItem(TOKEN, res.data.token)
+    dispatch(me())
+  } catch (authError) {
+    return dispatch(setAuth({ error: authError }))
+  }
+} */
+
+const authenticate = (username, password, method) => async (dispatch) => {
+  try {
+    const res = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.post(`/auth/${method}`, {
+      username,
+      password
+    });
+    const token = res.data.token;
+    (0,_axios__WEBPACK_IMPORTED_MODULE_0__.setToken)(token);
+    dispatch(me());
+  } catch (authError) {
+    return dispatch(setAuth({
+      error: authError
+    }));
+  }
+};
+/* export const logout = () => {
+  window.localStorage.removeItem(TOKEN)
+  history.push('/login')
+  return {
+    type: SET_AUTH,
+    auth: {}
+  }
+} */
+
+const logout = () => {
+  (0,_axios__WEBPACK_IMPORTED_MODULE_0__.removeToken)();
+  _history__WEBPACK_IMPORTED_MODULE_1__.default.push("/login");
+  return {
+    type: SET_AUTH,
+    auth: {}
+  };
+};
+/**
+ * REDUCER
+ */
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(state = {}, action) {
+  switch (action.type) {
+    case SET_AUTH:
+      return action.auth;
+
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./client/store/axios.js":
+/*!*******************************!*\
+  !*** ./client/store/axios.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setToken": () => /* binding */ setToken,
+/* harmony export */   "removeToken": () => /* binding */ removeToken,
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+const TOKEN = 'token';
+let axiosInstance = axios__WEBPACK_IMPORTED_MODULE_0___default().create();
+axiosInstance.interceptors.request.use(config => {
+  const token = window.localStorage.getItem(TOKEN);
+  config.headers.authorization = token ? token : '';
+  return config;
+});
+const setToken = token => {
+  window.localStorage.setItem(TOKEN, token);
+};
+const removeToken = () => {
+  window.localStorage.removeItem(TOKEN);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axiosInstance);
 
 /***/ }),
 
@@ -2759,9 +3264,12 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__,
+/* harmony export */   "authenticate": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.authenticate,
+/* harmony export */   "logout": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.logout,
+/* harmony export */   "me": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.me
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
@@ -2771,6 +3279,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _singleProduct__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./singleProduct */ "./client/store/singleProduct.js");
 /* harmony import */ var _isLoading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./isLoading */ "./client/store/isLoading.js");
 /* harmony import */ var _admin_users__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./admin_users */ "./client/store/admin_users.js");
+/* harmony import */ var _admin_products__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./admin_products */ "./client/store/admin_products.js");
 
 
 
@@ -2780,17 +3289,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_8__.combineReducers)({
+
+const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_9__.combineReducers)({
   auth: _auth__WEBPACK_IMPORTED_MODULE_3__.default,
   products: _products__WEBPACK_IMPORTED_MODULE_4__.default,
   product: _singleProduct__WEBPACK_IMPORTED_MODULE_5__.default,
   isLoading: _isLoading__WEBPACK_IMPORTED_MODULE_6__.default,
-  users: _admin_users__WEBPACK_IMPORTED_MODULE_7__.default
+  users: _admin_users__WEBPACK_IMPORTED_MODULE_7__.default,
+  adminProducts: _admin_products__WEBPACK_IMPORTED_MODULE_8__.default
 });
-const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_8__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
+const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_9__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
-const store = (0,redux__WEBPACK_IMPORTED_MODULE_8__.createStore)(reducer, middleware);
+const store = (0,redux__WEBPACK_IMPORTED_MODULE_9__.createStore)(reducer, middleware);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 
@@ -2808,10 +3319,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => /* binding */ isLoading
 /* harmony export */ });
 /* harmony import */ var _admin_users__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./admin_users */ "./client/store/admin_users.js");
+/* harmony import */ var _admin_products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./admin_products */ "./client/store/admin_products.js");
+
 
 function isLoading(state = true, action) {
   switch (action.type) {
     case _admin_users__WEBPACK_IMPORTED_MODULE_0__.GET_USERS:
+      return false;
+
+    case _admin_products__WEBPACK_IMPORTED_MODULE_1__.GET_PRODUCTS:
       return false;
 
     default:

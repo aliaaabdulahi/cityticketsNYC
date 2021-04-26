@@ -39,10 +39,9 @@ class AllProducts extends Component {
         {products
           ? products.map((product) => (
               <div key={product.id}>
-                <ProductCard product={product} key={product.id} />
+                <ProductCard product={product}/>
                 <button
                   onClick={this.handleAdd}
-                  key={product.id}
                   name={product.name}
                 >
                   +

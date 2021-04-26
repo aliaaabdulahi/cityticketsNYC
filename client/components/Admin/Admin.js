@@ -7,7 +7,10 @@ export const Admin = props => {
    return (
       <div>
          <h1> Welcome Admin {username}</h1>
-         <Link to='/admin/users'> All Users </Link>
+         <ul>
+            <li><Link to='/admin/users'> All Users </Link></li>
+            <li><Link to='/admin/products'> All Products </Link></li>
+         </ul>
       </div>
    )
 }
