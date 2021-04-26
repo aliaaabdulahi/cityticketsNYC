@@ -1,24 +1,50 @@
 const {
-  models: { Order, Order_Product },
+  models: { Order, Product },
 } = require("../db");
 const router = require("express").Router();
+const { requireToken, isLoggedInUser } = require('./gatekeepingMiddleware');
+const { route } = require("./order_products");
 
-router.get("/", async (req, res, next) => {
+//   /cart/userId
+
+route.get("/:userId", async (req, res, next) => {
   try {
-    res.send(
-      // await Order.findOne({
-      //   where: {
-      //     userId: 2,
-      //   },
-      //   include: {
-      //     model: Order_Product,
-      //   },
-      // })
-      await Order_Product.findAll()
-    );
-  } catch (err) {
-    next(err);
+    const email = req.body.buyerEmail
+
+    const existingCart = await Order.findOne({
+      where: {
+        buyerEmail: email,
+        userId: req.params.userId,
+        isFulfilled: false
+      },
+      include: {
+        model: Product,
+      },
+    })
+    res.send(existingCart)
+  } catch (error) {
+    next(error)
   }
-});
+})
+
+router.post("/:userId", async (req, res, next) => {
+  try {
+    const email = req.body.buyerEmail
+
+    const cart = await Order.findOrCreate({
+      where: {
+        buyerEmail: email,
+        userId: req.params.userId,
+        isFulfilled: false
+      },
+      include: {
+        model: Product,
+      },
+    })
+    res.send(cart)
+  } catch (error){
+    next(error)
+  }
+})
 
 module.exports = router;
