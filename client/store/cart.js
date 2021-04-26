@@ -47,15 +47,15 @@ export const fetchCreateItem = () => {
   };
 };
 
-// export const fetchAddItem = (id) => {
-//   return async (dispatch) => {
-//     try {
-//       const {data} = await axios.get('/api/cart/addItem')
-//       dispatch(addItem(data))
-//     } catch (err) {
-//       console.log(err)
-//     }
-//   }
+export const fetchAddItem = (id) => {
+  // return async (dispatch) => {
+  //   try {
+  //     const {data} = await axios.get('/api/cart/addItem')
+  //     dispatch(addItem(data))
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  }
 
 // export const fetchRemoveItem = (id) => {
 //   return async (dispatch) => {

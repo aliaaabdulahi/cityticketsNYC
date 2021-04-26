@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchProducts } from "../store/products";
+
 import SingleProduct from "./SingleProduct";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
@@ -63,6 +64,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadProducts: () => dispatch(fetchProducts()),
+    fetchAddItem: () => dispatch(fetchAddItem())
   };
 };
 

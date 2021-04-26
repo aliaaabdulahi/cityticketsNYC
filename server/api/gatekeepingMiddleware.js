@@ -15,11 +15,11 @@ const requireToken = async (req, res, next) => {
     */
 
     //if not use cookies
-    //* const token = req.headers.authorization; 
+    const token = req.headers.authorization; 
 
 
     //use cookies to show result of api request on browser
-    const token = req.cookies.token 
+    //const token = req.cookies.token 
 
     const user = await User.findByToken(token);
     req.user = user;
