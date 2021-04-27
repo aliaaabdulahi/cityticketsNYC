@@ -42,7 +42,7 @@ class SingleProduct extends Component {
     console.log('new qty -->', this.state.quantity)
     return <div key={this.props.product.id}>{this.props.product.name} {this.props.product.id}
     <input type='number' min={1} max={999999} onChange={this.handleChange} name='quantity'/>
-    <button onClick={this.handleSubmit}>submit</button>
+      <Link to="/products"><button onClick={this.handleSubmit}>submit</button></Link>
     </div>;
   }
 }

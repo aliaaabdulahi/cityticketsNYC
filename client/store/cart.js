@@ -4,7 +4,7 @@ import axios from "./axios";
 export const GET_CART = "GET_CART";
 export const ADD_CART = "ADD_CART";
 export const REMOVE_CART = "REMOVE_CART";
-
+export const CHECKOUT = "CHECKOUT";
 //action creator
 export const getCart = (cart) => {
   return {
@@ -27,6 +27,11 @@ export const removeFromCart = (cart) => {
   };
 };
 
+export const checkout = () => {
+  return {
+    type: CHECKOUT
+  }
+}
 //thunk
 
 export const getCartThunk = (userId, body) => {
@@ -64,6 +69,21 @@ export const removeFromCartThunk = (body) => {
     }
   };
 };
+
+export const checkoutThunk = (userId, history) => {
+  return async (dispatch) => {
+    try {
+      console.log('in checkout thunk');
+      await axios.put(`/api/checkout/${userId}`);
+      dispatch(checkout())
+      history.push('/thanks')
+  
+    }catch (err){
+      console.log(err);
+    }
+  }
+ 
+}
 //initial state
 const initialState = {};
 

@@ -378,7 +378,7 @@ const products = [
     name: "AKA",
     description:
       "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    image: "http://dummyimage.com/x.png/5fa2dd/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 172.63,
     date: "2020-12-30",
     time: "8:39",
@@ -387,7 +387,7 @@ const products = [
     name: "Another You",
     description:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 120.85,
     date: "2020-09-05",
     time: "7:34",
@@ -396,7 +396,7 @@ const products = [
     name: "Congo",
     description:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sitet, cursus id, turpis.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 171.6,
     date: "2021-01-21",
     time: "6:58",
@@ -405,7 +405,7 @@ const products = [
     name: "Almost Married",
     description:
       "In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
-    image: "http://dummyimage.com/x.png/cc0000/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 352.47,
     date: "2022-10-08",
     time: "4:59",
@@ -414,7 +414,7 @@ const products = [
     name: "Afstiros katallilo",
     description:
       "Phasellus sitet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.",
-    image: "http://dummyimage.com/x.png/cc0000/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 299.3,
     date: "2021-04-25",
     time: "3:11",
@@ -423,7 +423,7 @@ const products = [
     name: "Guess Who's Coming to Dinner",
     description:
       "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.",
-    image: "http://dummyimage.com/x.png/5fa2dd/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 382.62,
     date: "2020-09-20",
     time: "12:45",
@@ -432,8 +432,7 @@ const products = [
     name: "For Ever Mozart",
     description:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.",
-    image: "http://dummyimage.com/x.png/cc0000/ffffff",
-    price: 15.61,
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     date: "2022-09-11",
     time: "11:37",
   },
@@ -441,7 +440,7 @@ const products = [
     name: "Aral, Fishing in an Invisible Sea",
     description:
       "Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sitet nulla.",
-    image: "http://dummyimage.com/x.png/5fa2dd/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 217.04,
     date: "2021-05-05",
     time: "5:04",
@@ -450,7 +449,7 @@ const products = [
     name: "Broken Arrow",
     description:
       "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sitet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 364.45,
     date: "2020-09-08",
     time: "12:15",
@@ -459,7 +458,7 @@ const products = [
     name: "Papa",
     description:
       "Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 430.19,
     date: "2022-05-23",
     time: "3:27",
@@ -468,7 +467,7 @@ const products = [
     name: "44 Minutes: The North Hollywood Shoot-Out",
     description:
       "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique.",
-    image: "http://dummyimage.com/x.png/5fa2dd/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 19.26,
     date: "2022-05-09",
     time: "8:01",
@@ -477,7 +476,7 @@ const products = [
     name: "Dying of the Light",
     description:
       "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    image: "http://dummyimage.com/x.png/5fa2dd/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 420.75,
     date: "2021-11-24",
     time: "8:17",
@@ -486,7 +485,7 @@ const products = [
     name: "Misfortunates, The (De helaasheid der dingen)",
     description:
       "Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 141.27,
     date: "2021-09-12",
     time: "3:53",
@@ -495,7 +494,7 @@ const products = [
     name: "Franz Kafka's a Country Doctor",
     description:
       "Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 40.28,
     date: "2021-11-14",
     time: "5:40",
@@ -504,7 +503,7 @@ const products = [
     name: "Skin Deep",
     description:
       "In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 76.22,
     date: "2020-08-25",
     time: "7:18",
@@ -513,7 +512,7 @@ const products = [
     name: "Hacks (Sink or Swim) (Big Twist, The)",
     description:
       "Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sitet, cursus id, turpis.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 325.69,
     date: "2021-12-30",
     time: "6:20",
@@ -522,7 +521,7 @@ const products = [
     name: "Young Törless, The (Junge Törless, Der)",
     description:
       "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sitet sapien dignissim vestibulum.",
-    image: "http://dummyimage.com/x.png/5fa2dd/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 180.82,
     date: "2021-12-23",
     time: "6:38",
@@ -531,7 +530,7 @@ const products = [
     name: "End of the Line",
     description:
       "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 51.55,
     date: "2022-01-08",
     time: "7:49",
@@ -540,7 +539,7 @@ const products = [
     name: "Wrong Man, The",
     description:
       "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sitet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.",
-    image: "http://dummyimage.com/x.png/cc0000/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 80.46,
     date: "2020-11-18",
     time: "11:54",
@@ -549,7 +548,7 @@ const products = [
     name: "The Spectacular Now",
     description:
       "Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sitet sapien dignissim vestibulum.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 337.42,
     date: "2021-06-04",
     time: "5:29",
@@ -558,7 +557,7 @@ const products = [
     name: "Time in the Minors",
     description:
       "Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 27.63,
     date: "2022-04-13",
     time: "5:00",
@@ -567,7 +566,7 @@ const products = [
     name: "Charley Varrick",
     description:
       "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 95.59,
     date: "2020-12-10",
     time: "6:45",
@@ -576,7 +575,7 @@ const products = [
     name: "Sexy Nights of the Living Dead",
     description:
       "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-    image: "http://dummyimage.com/x.png/cc0000/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 128.79,
     date: "2022-09-05",
     time: "7:06",
@@ -584,7 +583,7 @@ const products = [
   {
     name: "In a Town This Size",
     description: "Duis bibendum. Morbi non quam nec dui luctus rutrum.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 369.98,
     date: "2020-11-23",
     time: "8:20",
@@ -593,7 +592,7 @@ const products = [
     name: "Sandra of a Thousand Delights (Vaghe stelle dell'Orsa...)",
     description:
       "Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 499.47,
     date: "2020-08-28",
     time: "9:15",
@@ -602,7 +601,7 @@ const products = [
     name: "Chloe",
     description:
       "Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 257.3,
     date: "2021-09-15",
     time: "11:13",
@@ -611,7 +610,7 @@ const products = [
     name: "Somersault",
     description:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.",
-    image: "http://dummyimage.com/x.png/cc0000/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 300.82,
     date: "2022-07-01",
     time: "8:31",
@@ -620,7 +619,7 @@ const products = [
     name: "Pina",
     description:
       "Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 252.82,
     date: "2021-09-26",
     time: "3:38",
@@ -629,7 +628,7 @@ const products = [
     name: "Ace Ventura: When Nature Calls",
     description:
       "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 144.87,
     date: "2020-09-20",
     time: "3:17",
@@ -638,7 +637,7 @@ const products = [
     name: "Man Who Never Was, The",
     description:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 216.52,
     date: "2021-04-08",
     time: "1:36",
@@ -647,7 +646,7 @@ const products = [
     name: "Never a Dull Moment",
     description:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 294.29,
     date: "2022-01-26",
     time: "3:26",
@@ -656,7 +655,7 @@ const products = [
     name: "Sixth of the World, A (Shestaya chast mira)",
     description:
       "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 203.76,
     date: "2022-11-22",
     time: "8:26",
@@ -664,7 +663,7 @@ const products = [
   {
     name: "Ninja",
     description: "Duis mattis egestas metus. Aenean fermentum.",
-    image: "http://dummyimage.com/x.png/cc0000/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 454.99,
     date: "2020-11-13",
     time: "10:00",
@@ -673,7 +672,7 @@ const products = [
     name: "Everyday People",
     description:
       "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
-    image: "http://dummyimage.com/x.png/cc0000/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 30.06,
     date: "2022-11-07",
     time: "4:32",
@@ -682,7 +681,7 @@ const products = [
     name: "Spring is Here",
     description:
       "Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 377.55,
     date: "2021-10-23",
     time: "10:45",
@@ -691,7 +690,7 @@ const products = [
     name: "Executive Decision",
     description:
       "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 400.45,
     date: "2021-03-27",
     time: "10:18",
@@ -700,7 +699,7 @@ const products = [
     name: "Att stjäla en tjuv",
     description:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-    image: "http://dummyimage.com/x.png/dddddd/000000",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 138.51,
     date: "2021-04-28",
     time: "9:02",
@@ -708,7 +707,7 @@ const products = [
   {
     name: "Paths of Hate",
     description: "Nulla nisl. Nunc nisl.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 479.74,
     date: "2022-02-20",
     time: "10:39",
@@ -716,7 +715,7 @@ const products = [
   {
     name: "Hell Town (Born to the West)",
     description: "Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-    image: "http://dummyimage.com/x.png/cc0000/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 325.12,
     date: "2021-06-17",
     time: "4:03",
@@ -725,7 +724,7 @@ const products = [
     name: "Fifth Cord, The (Giornata nera per l'ariete)",
     description:
       "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-    image: "http://dummyimage.com/x.png/ff4444/ffffff",
+    image: "https://2018.ahmedabad.wordcamp.org/files/2018/09/WCAhmedabad-Tickets.jpg",
     price: 475.36,
     date: "2020-09-02",
     time: "8:46",
