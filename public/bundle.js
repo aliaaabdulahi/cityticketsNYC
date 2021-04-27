@@ -2115,7 +2115,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_admin_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/admin_users */ "./client/store/admin_users.js");
 /* harmony import */ var _AdminUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AdminUser */ "./client/components/Admin/AdminUser.js");
-/* harmony import */ var _client_store_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../client/store/auth */ "./client/store/auth.js");
+/* harmony import */ var _client_store_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../client/store/auth */ "./client/store/auth.js");
 
 
 
@@ -2201,23 +2201,96 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
- // import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _store_admin_products__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/admin_products */ "./client/store/admin_products.js");
+/* harmony import */ var _store_singleProduct__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/singleProduct */ "./client/store/singleProduct.js");
+
+
+
+
+
 
 class AdminEditProduct extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
-  // not finished
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: this.props.product.name ? this.props.product.name : '',
+      description: this.props.product.description ? this.props.product.description : '',
+      image: this.props.product.image ? this.props.product.image : '',
+      price: this.props.product.price ? this.props.product.price : '',
+      date: this.props.product.date ? this.props.product.date : ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const {
+      id
+    } = this.props.match.params;
+    this.props.getSingleProduct(id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.product.id !== this.props.product.id) {
+      this.setState({
+        name: this.props.product.name || '',
+        description: this.props.product.description || '',
+        image: this.props.product.image || '',
+        price: this.props.product.price || '',
+        date: this.props.product.date || ''
+      });
+    }
+  }
+
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
+  }
+
+  handleSubmit(evt) {
+    evt.preventDefault();
+    this.props.updateProduct(this.props.match.params.id, { ...this.state
+    });
+    this.setState({
+      name: '',
+      description: '',
+      image: '',
+      price: '',
+      date: ''
+    });
+  }
+
   render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Update Product"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Product ID: ", " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    console.log('product props', this.state);
+    const {
+      name,
+      description,
+      image,
+      price,
+      date
+    } = this.state;
+    const {
+      handleSubmit,
+      handleChange
+    } = this;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Update Product"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      onSubmit: handleSubmit
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "col-20"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
       htmlFor: "name"
-    }, "Event Name:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, "Event Name:", name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "col-70"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
       name: "name",
-      required: true
+      required: true,
+      onChange: handleChange,
+      value: name
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2228,28 +2301,45 @@ class AdminEditProduct extends (react__WEBPACK_IMPORTED_MODULE_0___default().Com
       className: "col-70"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
       name: "description",
-      required: true
+      required: true,
+      onChange: handleChange,
+      value: description
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "col-20"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-      htmlFor: "imageUrl"
+      htmlFor: "image"
     }, "imageUrl:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "col-70"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-      name: "imageUrl",
-      type: "text"
+      name: "image",
+      type: "text",
+      onChange: handleChange,
+      value: image
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "form-button-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       type: "submit"
-    }, "Save Change "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Cancel")))));
+    }, "Save Change "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      to: `/admin/products/${this.props.match.params.id}`
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Cancel"))))));
   }
 
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminEditProduct);
+const mapState = state => ({
+  product: state.product
+});
+
+const mapDispatch = (dispatch, {
+  history
+}) => ({
+  updateProduct: (id, product) => dispatch((0,_store_admin_products__WEBPACK_IMPORTED_MODULE_2__.updateProduct)(id, product, history)),
+  getSingleProduct: id => dispatch((0,_store_singleProduct__WEBPACK_IMPORTED_MODULE_3__.fetchSingleProduct)(id))
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(AdminEditProduct));
 
 /***/ }),
 
@@ -3101,7 +3191,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "GET_PRODUCTS": () => /* binding */ GET_PRODUCTS,
 /* harmony export */   "_getProducts": () => /* binding */ _getProducts,
 /* harmony export */   "_deleteProduct": () => /* binding */ _deleteProduct,
-/* harmony export */   "_updatePoduct": () => /* binding */ _updatePoduct,
+/* harmony export */   "_updateProduct": () => /* binding */ _updateProduct,
 /* harmony export */   "getProducts": () => /* binding */ getProducts,
 /* harmony export */   "deleteProduct": () => /* binding */ deleteProduct,
 /* harmony export */   "updateProduct": () => /* binding */ updateProduct,
@@ -3120,7 +3210,7 @@ const _deleteProduct = productId => ({
   type: DELETE_PRODUCT,
   productId
 });
-const _updatePoduct = product => ({
+const _updateProduct = product => ({
   type: UPDATE_PRODUCT,
   product
 });
@@ -3148,6 +3238,7 @@ const deleteProduct = (id, history) => {
   };
 };
 const updateProduct = (id, product, history) => {
+  console.log(product);
   return async dispatch => {
     try {
       await _axios__WEBPACK_IMPORTED_MODULE_0__.default.put(`/api/admin/products/${id}`, product);
@@ -3427,105 +3518,9 @@ const removeToken = () => {
 /*!******************************!*\
   !*** ./client/store/cart.js ***!
   \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GET_CART": () => /* binding */ GET_CART,
-/* harmony export */   "ADD_CART": () => /* binding */ ADD_CART,
-/* harmony export */   "REMOVE_CART": () => /* binding */ REMOVE_CART,
-/* harmony export */   "getCart": () => /* binding */ getCart,
-/* harmony export */   "addToCart": () => /* binding */ addToCart,
-/* harmony export */   "removeFromCart": () => /* binding */ removeFromCart,
-/* harmony export */   "getCartThunk": () => /* binding */ getCartThunk,
-/* harmony export */   "addToCartThunk": () => /* binding */ addToCartThunk,
-/* harmony export */   "removeFromCartThunk": () => /* binding */ removeFromCartThunk,
-/* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
- //action constant
-
-const GET_CART = "GET_CART";
-const ADD_CART = "ADD_CART";
-const REMOVE_CART = "REMOVE_CART"; //action creator
-
-const getCart = cart => {
-  return {
-    type: GET_CART,
-    cart
-  };
-};
-const addToCart = cart => {
-  return {
-    type: ADD_CART,
-    cart
-  };
-};
-const removeFromCart = cart => {
-  return {
-    type: REMOVE_CART,
-    cart
-  };
-}; //thunk
-
-const getCartThunk = (userId, body) => {
-  return async dispatch => {
-    try {
-      console.log('here in FETCH CART thunk-->', userId, body);
-      const {
-        data
-      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.post(`/api/cart/${userId}`, body);
-      dispatch(getCart(data));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-const addToCartThunk = body => {
-  return async dispatch => {
-    try {
-      console.log('here in ADD_PRODUCT thunk-->', body);
-      const {
-        data
-      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.post(`/api/cart/addProduct`, body);
-      dispatch(getCart(data));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-const removeFromCartThunk = body => {
-  return async dispatch => {
-    try {
-      console.log('here in DELETE_PRODUCT thunk-->', body);
-      const {
-        data
-      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.put(`/api/cart/deleteProduct`, body);
-      dispatch(removeFromCart(data));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-}; //initial state
-
-const initialState = {}; //reducer
-
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(state = initialState, action) {
-  switch (action.type) {
-    case GET_CART:
-      return action.cart;
-
-    case ADD_CART:
-      return action.cart;
-
-    case REMOVE_CART:
-      return action.cart;
-
-    default:
-      return state;
-  }
-}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/resilient/Desktop/Grace-Shopper-2/client/store/cart.js: Unexpected token (4:1)\n\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39m\u001b[90m//action constant\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m \u001b[33mGET_CART\u001b[39m \u001b[33m=\u001b[39m \u001b[32m\"GET_CART\"\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m\u001b[90m//export const CREATE_ITEM = \"CREATE_ITEM\";\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 7 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m \u001b[33mADD_ITEM\u001b[39m \u001b[33m=\u001b[39m \u001b[32m\"ADD_ITEM\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:9101:16)\n    at Object.jsxParseIdentifier (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4536:12)\n    at Object.jsxParseNamespacedName (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4546:23)\n    at Object.jsxParseElementName (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4557:21)\n    at Object.jsxParseOpeningElementAt (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4644:22)\n    at Object.jsxParseElementAt (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4677:33)\n    at Object.jsxParseElement (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4751:17)");
 
 /***/ }),
 

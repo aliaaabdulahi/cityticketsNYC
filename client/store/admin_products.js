@@ -14,7 +14,7 @@ export const _deleteProduct = (productId) => ({
    productId,
 });
 
-export const _updatePoduct = (product) => ({
+export const _updateProduct = (product) => ({
    type: UPDATE_PRODUCT,
    product,
 });
@@ -46,6 +46,7 @@ export const deleteProduct = (id, history) => {
 };
 
 export const updateProduct = (id, product, history) => {
+   console.log(product)
    return async (dispatch) => {
       try {
          await axios.put(`/api/admin/products/${id}`, product);
