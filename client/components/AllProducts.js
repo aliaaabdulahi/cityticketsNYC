@@ -31,7 +31,7 @@ class AllProducts extends Component {
     return (
       <div>
 
-        <Cart items={this.state.selectItems} />
+ 
         <div>
           <h3> View more events: </h3>
           {products
