@@ -45,7 +45,7 @@ class Routes extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/orderHistory" component={OrderHistory} />
 
-            {/* <Redirect to="/home" /> */}
+            <Redirect to="/products" />
           </Switch>
         ) : (
           <Switch>
