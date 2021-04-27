@@ -10,7 +10,7 @@ import AdminAllUsers from "./components/Admin/AdminAllUsers";
 import AdminAllProducts from "./components/Admin/AdminAllProducts";
 import Admin from "./components/Admin/Admin";
 import AdminEditProduct from "./components/Admin/AdminEditProduct";
-
+import Cart from "./components/Cart";
 /**
  * COMPONENT
  */
@@ -26,6 +26,7 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
+            <Route exact path="/cart" component={Cart} />
             <Route path="/home" component={Home} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route exact path="/products" component={AllProducts} />
