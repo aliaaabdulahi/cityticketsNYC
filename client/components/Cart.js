@@ -10,6 +10,7 @@ export class Cart extends Component {
       products: [],
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
   }
 
   componentDidMount() {
@@ -20,12 +21,11 @@ export class Cart extends Component {
   }
   componentDidUpdate(prevState) {
     if (prevState.cart !== this.props.cart) {
-      console.log("success, your cart", this.props.cart);
+
       const body = {
         buyerEmail: this.props.auth.email,
       };
-      this.props.fetchCart(this.props.auth.id, body);
-
+      // this.props.fetchCart(this.props.auth.id, body);
       this.setState({
         products: this.props.cart.products,
       });
@@ -41,9 +41,17 @@ export class Cart extends Component {
     };
     this.props.removeFromCart(body);
   }
+
+  handleCheckout(){
+    alert('hi')
+  }
   render() {
     console.log("here is your cart!!!", this.state.products);
     const products = this.state.products || [];
+    const prices = [0]
+    products.forEach(product => prices.push(product.order_product.quantity*product.price))
+    let sum = prices.reduce((acc, val) => acc+val)
+
 
     return (
       <div>
@@ -63,6 +71,7 @@ export class Cart extends Component {
             
           </div>
         ))}
+        <p>Order Total: ${sum}</p>
       </div>
     );
   }

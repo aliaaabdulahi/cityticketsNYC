@@ -2624,6 +2624,7 @@ class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       products: []
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
   }
 
   componentDidMount() {
@@ -2635,11 +2636,10 @@ class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
   componentDidUpdate(prevState) {
     if (prevState.cart !== this.props.cart) {
-      console.log("success, your cart", this.props.cart);
       const body = {
         buyerEmail: this.props.auth.email
-      };
-      this.props.fetchCart(this.props.auth.id, body);
+      }; // this.props.fetchCart(this.props.auth.id, body);
+
       this.setState({
         products: this.props.cart.products
       });
@@ -2657,9 +2657,16 @@ class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     this.props.removeFromCart(body);
   }
 
+  handleCheckout() {
+    alert('hi');
+  }
+
   render() {
     console.log("here is your cart!!!", this.state.products);
     const products = this.state.products || [];
+    const prices = [0];
+    products.forEach(product => prices.push(product.order_product.quantity * product.price));
+    let sum = prices.reduce((acc, val) => acc + val);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "My Cart \uD83D\uDED2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
       to: "/thanks"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Checkout")), products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2667,7 +2674,7 @@ class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " ", product.name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, " ", " QTY: ", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, " ", product.order_product.quantity, " "), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       onClick: this.handleDelete,
       name: product.id
-    }, "Remove From Cart")))));
+    }, "Remove From Cart")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Order Total: $", sum));
   }
 
 }
