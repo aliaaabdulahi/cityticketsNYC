@@ -25,7 +25,7 @@ const initialState = [];
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_HISTORY:
-      return action.history[0].products;
+      return action.history;
     default:
       return state;
   }

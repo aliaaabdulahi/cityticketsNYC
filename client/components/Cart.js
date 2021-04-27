@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getCartThunk, removeFromCartThunk } from "../store/cart";
+import { getCartThunk, removeFromCartThunk, checkoutThunk } from "../store/cart";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 export class Cart extends Component {
@@ -43,7 +43,7 @@ export class Cart extends Component {
   }
 
   handleCheckout(){
-    alert('hi')
+    this.props.checkout(this.props.auth.id)
   }
   render() {
     console.log("here is your cart!!!", this.state.products);
@@ -56,9 +56,7 @@ export class Cart extends Component {
     return (
       <div>
         <p>My Cart 🛒</p>
-        <Link to="/thanks">
-          <button>Checkout</button>
-        </Link>
+
         {products.map((product) => (
           <div key={product.id}>
             <h1> {product.name} </h1>
@@ -72,6 +70,10 @@ export class Cart extends Component {
           </div>
         ))}
         <p>Order Total: ${sum}</p>
+    
+          <button onClick={this.handleCheckout}>Checkout</button>
+
+   
       </div>
     );
   }
@@ -84,10 +86,11 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, {history}) => {
   return {
     fetchCart: (userId, body) => dispatch(getCartThunk(userId, body)),
     removeFromCart: (body) => dispatch(removeFromCartThunk(body)),
+    checkout:(userId) => dispatch(checkoutThunk(userId, history))
   };
 };
 
