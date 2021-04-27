@@ -10,6 +10,8 @@ import AdminAllUsers from "./components/Admin/AdminAllUsers";
 import AdminAllProducts from "./components/Admin/AdminAllProducts";
 import Admin from "./components/Admin/Admin";
 import AdminEditProduct from "./components/Admin/AdminEditProduct";
+import Cart from "./components/Cart";
+import Thanks from "./components/Thanks";
 
 /**
  * COMPONENT
@@ -29,11 +31,16 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route exact path="/products" component={AllProducts} />
-
+            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/thanks" component={Thanks} />
             {/* Routes below for admin */}
             <Route exact path="/admin/users" component={AdminAllUsers} />
             <Route exact path="/admin/products" component={AdminAllProducts} />
-            <Route exact path='/admin/products/:id/edit' component={AdminEditProduct} />
+            <Route
+              exact
+              path="/admin/products/:id/edit"
+              component={AdminEditProduct}
+            />
             <Route exact path="/admin" component={Admin} />
 
             {/* <Redirect to="/home" /> */}
@@ -60,7 +67,7 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
-    isAdmin: state.auth.isAdmin
+    isAdmin: state.auth.isAdmin,
   };
 };
 
