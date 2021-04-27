@@ -1,14 +1,12 @@
 const {
   models: { Order, Product, Order_Product },
 } = require("../db");
+const router = require("express").Router();
 
 router.get("/:userId", async (req, res, next) => {
   try {
-    const email = req.body.buyerEmail;
-
     const orderHistory = await Order.findAll({
       where: {
-        buyerEmail: email,
         userId: req.params.userId,
         isFulfilled: true,
       },
@@ -21,3 +19,5 @@ router.get("/:userId", async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = router;

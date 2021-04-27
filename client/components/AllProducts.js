@@ -5,7 +5,6 @@ import { getCartThunk, removeFromCartThunk } from "../store/cart";
 import SingleProduct from "./SingleProduct";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
-import Cart from "./Cart";
 
 class AllProducts extends Component {
   constructor(props) {
@@ -31,7 +30,6 @@ class AllProducts extends Component {
 
     return (
       <div>
-        <Cart items={this.state.selectItems} />
         {products
           ? products.map((product) => (
               <div key={product.id}>

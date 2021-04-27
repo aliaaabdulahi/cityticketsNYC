@@ -2449,8 +2449,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/cart */ "./client/store/cart.js");
 /* harmony import */ var _SingleProduct__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SingleProduct */ "./client/components/SingleProduct.js");
 /* harmony import */ var _ProductCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ProductCard */ "./client/components/ProductCard.js");
-/* harmony import */ var _Cart__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Cart */ "./client/components/Cart.js");
-
 
 
 
@@ -2481,9 +2479,7 @@ class AllProducts extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 
   render() {
     const products = this.props.products || [];
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Cart__WEBPACK_IMPORTED_MODULE_6__.default, {
-      items: this.state.selectItems
-    }), products ? products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, products ? products.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       key: product.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_5__.default, {
       product: product
@@ -2691,6 +2687,59 @@ const mapDispatch = dispatch => {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapState, mapDispatch)(Cart));
+
+/***/ }),
+
+/***/ "./client/components/OrderHistory.js":
+/*!*******************************************!*\
+  !*** ./client/components/OrderHistory.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_order_history__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/order_history */ "./client/store/order_history.js");
+
+
+
+
+class OrderHistory extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.loadHistory(this.props.auth.id);
+  }
+
+  render() {
+    const history = this.props.orderHistory;
+    console.log(history);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, history.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, " ", product.name)));
+  }
+
+}
+
+const mapState = state => {
+  return {
+    orderHistory: state.orderHistory,
+    auth: state.auth
+  };
+};
+
+const mapDispatch = dispatch => {
+  return {
+    loadHistory: id => dispatch((0,_store_order_history__WEBPACK_IMPORTED_MODULE_2__.fetchHistory)(id))
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(OrderHistory));
 
 /***/ }),
 
@@ -2935,8 +2984,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./client/store/index.js");
+/* harmony import */ var _Cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Cart */ "./client/components/Cart.js");
+/* harmony import */ var _OrderHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./OrderHistory */ "./client/components/OrderHistory.js");
+
+
 
 
 
@@ -2946,18 +2999,24 @@ const Navbar = ({
   handleClick,
   isLoggedIn,
   isAdmin
-}) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+}) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
   to: "/home"
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "NYC City tickets")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, isAdmin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "NYC City tickets")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+  to: "/products"
+}, "Events "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+  to: "/cart"
+}, "Cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+  to: "/orderHistory"
+}, "Order History"), isAdmin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
   to: "/admin"
-}, " Admin Home ") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+}, " Admin Home ") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
   to: "/home"
 }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
   href: "#",
   onClick: handleClick
-}, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+}, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
   to: "/login"
-}, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+}, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
   to: "/signup"
 }, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null));
 /**
@@ -3049,7 +3108,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AuthForm */ "./client/components/AuthForm.js");
 /* harmony import */ var _components_home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/home */ "./client/components/home.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
@@ -3061,6 +3120,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Admin_AdminEditProduct__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Admin/AdminEditProduct */ "./client/components/Admin/AdminEditProduct.js");
 /* harmony import */ var _components_Cart__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Cart */ "./client/components/Cart.js");
 /* harmony import */ var _components_Thanks__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Thanks */ "./client/components/Thanks.js");
+/* harmony import */ var _components_OrderHistory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/OrderHistory */ "./client/components/OrderHistory.js");
+
 
 
 
@@ -3089,60 +3150,64 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       isLoggedIn,
       isAdmin
     } = this.props;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/cart",
       component: _components_Cart__WEBPACK_IMPORTED_MODULE_11__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       path: "/home",
       component: _components_home__WEBPACK_IMPORTED_MODULE_3__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/products/:id",
       component: _components_SingleProduct__WEBPACK_IMPORTED_MODULE_6__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/products",
       component: _components_AllProducts__WEBPACK_IMPORTED_MODULE_5__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/cart",
       component: _components_Cart__WEBPACK_IMPORTED_MODULE_11__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/thanks",
       component: _components_Thanks__WEBPACK_IMPORTED_MODULE_12__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/admin/users",
       component: _components_Admin_AdminAllUsers__WEBPACK_IMPORTED_MODULE_7__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/admin/products",
       component: _components_Admin_AdminAllProducts__WEBPACK_IMPORTED_MODULE_8__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/admin/products/:id/edit",
       component: _components_Admin_AdminEditProduct__WEBPACK_IMPORTED_MODULE_10__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/admin",
       component: _components_Admin_Admin__WEBPACK_IMPORTED_MODULE_9__.default
-    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      exact: true,
+      path: "/orderHistory",
+      component: _components_OrderHistory__WEBPACK_IMPORTED_MODULE_13__.default
+    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       path: "/",
       exact: true,
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       path: "/login",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Login
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       path: "/signup",
       component: _components_AuthForm__WEBPACK_IMPORTED_MODULE_2__.Signup
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/products/:id",
       component: _components_SingleProduct__WEBPACK_IMPORTED_MODULE_6__.default
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       exact: true,
       path: "/products",
       component: _components_AllProducts__WEBPACK_IMPORTED_MODULE_5__.default
@@ -3175,7 +3240,7 @@ const mapDispatch = dispatch => {
 // when the url changes
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_14__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
 
 /***/ }),
 
@@ -3634,7 +3699,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "logout": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.logout,
 /* harmony export */   "me": () => /* reexport safe */ _auth__WEBPACK_IMPORTED_MODULE_3__.me
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
@@ -3646,6 +3711,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_users__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./admin_users */ "./client/store/admin_users.js");
 /* harmony import */ var _admin_products__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./admin_products */ "./client/store/admin_products.js");
 /* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cart */ "./client/store/cart.js");
+/* harmony import */ var _order_history__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./order_history */ "./client/store/order_history.js");
 
 
 
@@ -3657,19 +3723,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_10__.combineReducers)({
+
+const reducer = (0,redux__WEBPACK_IMPORTED_MODULE_11__.combineReducers)({
   auth: _auth__WEBPACK_IMPORTED_MODULE_3__.default,
   products: _products__WEBPACK_IMPORTED_MODULE_4__.default,
   product: _singleProduct__WEBPACK_IMPORTED_MODULE_5__.default,
   isLoading: _isLoading__WEBPACK_IMPORTED_MODULE_6__.default,
   users: _admin_users__WEBPACK_IMPORTED_MODULE_7__.default,
   adminProducts: _admin_products__WEBPACK_IMPORTED_MODULE_8__.default,
-  cart: _cart__WEBPACK_IMPORTED_MODULE_9__.default
+  cart: _cart__WEBPACK_IMPORTED_MODULE_9__.default,
+  orderHistory: _order_history__WEBPACK_IMPORTED_MODULE_10__.default
 });
-const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_10__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
+const middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_11__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
-const store = (0,redux__WEBPACK_IMPORTED_MODULE_10__.createStore)(reducer, middleware);
+const store = (0,redux__WEBPACK_IMPORTED_MODULE_11__.createStore)(reducer, middleware);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 
@@ -3697,6 +3765,55 @@ function isLoading(state = true, action) {
 
     case _admin_products__WEBPACK_IMPORTED_MODULE_1__.GET_PRODUCTS:
       return false;
+
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./client/store/order_history.js":
+/*!***************************************!*\
+  !*** ./client/store/order_history.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GET_HISTORY": () => /* binding */ GET_HISTORY,
+/* harmony export */   "getHistory": () => /* binding */ getHistory,
+/* harmony export */   "fetchHistory": () => /* binding */ fetchHistory,
+/* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+const GET_HISTORY = "GET_HISTORY";
+const getHistory = history => {
+  return {
+    type: GET_HISTORY,
+    history
+  };
+};
+const fetchHistory = id => {
+  return async dispatch => {
+    try {
+      const {
+        data
+      } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/order_history/${id}`);
+      dispatch(getHistory(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+const initialState = [];
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(state = initialState, action) {
+  switch (action.type) {
+    case GET_HISTORY:
+      return action.history[0].products;
 
     default:
       return state;
