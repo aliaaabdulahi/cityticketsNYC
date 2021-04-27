@@ -7,7 +7,7 @@ const { route } = require("./order_products");
 
 //   /cart/userId
 
-route.get("/:userId", async (req, res, next) => {
+router.get("/:userId", async (req, res, next) => {
   try {
     const email = req.body.buyerEmail
 
