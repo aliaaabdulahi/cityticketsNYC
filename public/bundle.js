@@ -3195,6 +3195,8 @@ class Routes extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       exact: true,
       path: "/orderHistory",
       component: _components_OrderHistory__WEBPACK_IMPORTED_MODULE_13__.default
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Redirect, {
+      to: "/products"
     })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
       path: "/",
       exact: true,
