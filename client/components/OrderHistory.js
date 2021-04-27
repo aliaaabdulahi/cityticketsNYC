@@ -15,7 +15,7 @@ class OrderHistory extends React.Component {
     return (
       <div>
         {history.map((product) => (
-          <div> {product.name}</div>
+          <div key={product.id}> {product.name}</div>
         ))}
       </div>
     );

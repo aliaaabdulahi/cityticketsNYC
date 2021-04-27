@@ -2721,7 +2721,9 @@ class OrderHistory extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compone
   render() {
     const history = this.props.orderHistory;
     console.log(history);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, history.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, " ", product.name)));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, history.map(product => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: product.id
+    }, " ", product.name)));
   }
 
 }
