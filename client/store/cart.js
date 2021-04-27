@@ -53,17 +53,6 @@ export const addToCartThunk = (body) => {
   };
 };
 
-export const getCart = () => {
-  return async (dispatch) => {
-    try {
-      const { data: cart } = axios.get("/api/cart");
-      dispatch(_getCart(cart));
-    } catch (error) {
-      console.log("Failed to fetch cart");
-    }
-  };
-};
-
 export const removeFromCartThunk = (body) => {
   return async (dispatch) => {
     try {

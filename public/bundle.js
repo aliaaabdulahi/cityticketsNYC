@@ -3518,9 +3518,105 @@ const removeToken = () => {
 /*!******************************!*\
   !*** ./client/store/cart.js ***!
   \******************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/resilient/Desktop/Grace-Shopper-2/client/store/cart.js: Unexpected token (4:1)\n\n\u001b[0m \u001b[90m 2 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39m\u001b[90m//action constant\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m \u001b[33mGET_CART\u001b[39m \u001b[33m=\u001b[39m \u001b[32m\"GET_CART\"\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 6 | \u001b[39m\u001b[90m//export const CREATE_ITEM = \"CREATE_ITEM\";\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 7 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m \u001b[33mADD_ITEM\u001b[39m \u001b[33m=\u001b[39m \u001b[32m\"ADD_ITEM\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:9101:16)\n    at Object.jsxParseIdentifier (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4536:12)\n    at Object.jsxParseNamespacedName (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4546:23)\n    at Object.jsxParseElementName (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4557:21)\n    at Object.jsxParseOpeningElementAt (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4644:22)\n    at Object.jsxParseElementAt (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4677:33)\n    at Object.jsxParseElement (/Users/resilient/Desktop/Grace-Shopper-2/node_modules/@babel/core/node_modules/@babel/parser/lib/index.js:4751:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GET_CART": () => /* binding */ GET_CART,
+/* harmony export */   "ADD_CART": () => /* binding */ ADD_CART,
+/* harmony export */   "REMOVE_CART": () => /* binding */ REMOVE_CART,
+/* harmony export */   "getCart": () => /* binding */ getCart,
+/* harmony export */   "addToCart": () => /* binding */ addToCart,
+/* harmony export */   "removeFromCart": () => /* binding */ removeFromCart,
+/* harmony export */   "getCartThunk": () => /* binding */ getCartThunk,
+/* harmony export */   "addToCartThunk": () => /* binding */ addToCartThunk,
+/* harmony export */   "removeFromCartThunk": () => /* binding */ removeFromCartThunk,
+/* harmony export */   "default": () => /* export default binding */ __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./client/store/axios.js");
+ //action constant
+
+const GET_CART = "GET_CART";
+const ADD_CART = "ADD_CART";
+const REMOVE_CART = "REMOVE_CART"; //action creator
+
+const getCart = cart => {
+  return {
+    type: GET_CART,
+    cart
+  };
+};
+const addToCart = cart => {
+  return {
+    type: ADD_CART,
+    cart
+  };
+};
+const removeFromCart = cart => {
+  return {
+    type: REMOVE_CART,
+    cart
+  };
+}; //thunk
+
+const getCartThunk = (userId, body) => {
+  return async dispatch => {
+    try {
+      console.log("here in FETCH CART thunk-->", userId, body);
+      const {
+        data
+      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.post(`/api/cart/${userId}`, body);
+      dispatch(getCart(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+const addToCartThunk = body => {
+  return async dispatch => {
+    try {
+      console.log("here in ADD_PRODUCT thunk-->", body);
+      const {
+        data
+      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.post(`/api/cart/addProduct`, body);
+      dispatch(getCart(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+const removeFromCartThunk = body => {
+  return async dispatch => {
+    try {
+      console.log("here in DELETE_PRODUCT thunk-->", body);
+      const {
+        data
+      } = await _axios__WEBPACK_IMPORTED_MODULE_0__.default.put(`/api/cart/deleteProduct`, body);
+      dispatch(removeFromCart(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}; //initial state
+
+const initialState = {}; //reducer
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(state = initialState, action) {
+  switch (action.type) {
+    case GET_CART:
+      return action.cart;
+
+    case ADD_CART:
+      return action.cart;
+
+    case REMOVE_CART:
+      return action.cart;
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
