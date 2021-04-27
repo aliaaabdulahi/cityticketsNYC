@@ -27,3 +27,73 @@ form div {
   justify-content: center;
   margin-top: 0px
 }
+
+a:visited {
+  color:black;
+  background-color: transparent;
+  text-decoration: none;
+ }
+
+a:active {
+  color: rgb(5, 5, 63);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:link {
+  color:black;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover ,.nav-link:hover {
+  color: rgb(20, 73, 20);
+  text-decoration: underline;
+}
+
+
+input{
+  width: 100%; 
+  padding: 12px;
+  border: 1px solid rgb(170, 166, 166);
+  border-radius: 4px;
+  resize: vertical;
+  margin: 4px;
+  font-size: 1rem
+}
+
+label {
+  font-weight: bold;
+  font-size: 1.25em
+}
+input:focus::-webkit-input-placeholder {
+  transition: opacity 0.4s 0.4s ease!important;
+  opacity: 0.40;
+  }
+
+.col-20 {
+  float: left;
+  width: 20%;
+  margin-top: 12px;
+}
+
+.col-70 {
+  float: left;
+  width: 70%;
+  margin-top: 6px;
+}
+
+button:hover {
+   background-color: rgb(122, 148, 226);
+ }
+
+ img {
+  transition: box-shadow 0.4s ease;
+  border-radius: 3px; 
+  width:  150px;
+  height: auto;
+  object-fit: cover;
+} 
+
+img:hover {
+  box-shadow: 4px 4px 4px #5a5a5a;
+}

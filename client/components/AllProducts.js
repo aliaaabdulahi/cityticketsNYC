@@ -32,13 +32,17 @@ class AllProducts extends Component {
     return (
       <div>
         <Cart items={this.state.selectItems} />
-        {products
-          ? products.map((product) => (
+        <div>
+          <h3> View more events: </h3>
+          {products
+            ? products.map((product) => (
               <div key={product.id}>
                 <ProductCard product={product} />
               </div>
             ))
-          : "loading"}
+            : "loading"}
+        </div>
+        
       </div>
     );
   }
