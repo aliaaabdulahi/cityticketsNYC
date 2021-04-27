@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchProducts } from "../store/products";
-
+import { getCartThunk, removeFromCartThunk } from "../store/cart";
 import SingleProduct from "./SingleProduct";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
@@ -17,18 +17,13 @@ class AllProducts extends Component {
   }
   componentDidMount() {
     this.props.loadProducts();
+    this.props.fetchCart(this.props.auth.id, {
+      buyerEmail: this.props.auth.email,
+    });
   }
 
   handleAdd(evt) {
     this.props.fetchAddItem();
-    //   const newItem = evt.target.name
-    //   // const existItems = this.state.selectItems
-
-    //   existItems.push(newItem)
-
-    //   this.setState({
-    //     selectItems: existItems
-    //   })
   }
 
   render() {
@@ -40,13 +35,7 @@ class AllProducts extends Component {
         {products
           ? products.map((product) => (
               <div key={product.id}>
-                <ProductCard product={product}/>
-                <button
-                  onClick={this.handleAdd}
-                  name={product.name}
-                >
-                  +
-                </button>
+                <ProductCard product={product} />
               </div>
             ))
           : "loading"}
@@ -58,13 +47,14 @@ class AllProducts extends Component {
 const mapState = (state) => {
   return {
     products: state.products,
+    auth: state.auth,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     loadProducts: () => dispatch(fetchProducts()),
-    fetchAddItem: () => dispatch(fetchAddItem())
+    fetchCart: (userId, body) => dispatch(getCartThunk(userId, body)),
   };
 };
 

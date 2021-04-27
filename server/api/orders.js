@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Order },
+  models: { Order,Product },
 } = require("../db");
 
 router.get("/", async (req, res, next) => {
@@ -12,12 +12,18 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// router.post("/", async (req, res, next) => {
-//   try {
-//     res.status(201).send(await Order.create(req.body));
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+router.get("/:userId", async (req, res, next) => {
+  try {
+    const userId = req.params.userId
+    res.send(await Order.findAll({
+      where:{userId:userId,
+       isFulfilled: true},
+      include: Product
+    }))
+   
+  } catch (err) {
+     next(err);
+  }
+});
 
 module.exports = router;
