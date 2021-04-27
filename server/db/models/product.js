@@ -12,13 +12,9 @@ const Product = db.define("product", {
   },
   description: Sequelize.TEXT,
   image: {
-    type: Sequelize.TEXT,
-    allowNull: false,
+    type: Sequelize.STRING,
     defaultValue:
-      "https://upload.wikimedia.org/wikipedia/commons/3/31/Walk_of_Fame_Category_Motion_Pictures.jpg",
-    validate: {
-      notEmpty: true,
-    },
+      "https://www.thecherry.org/wp-content/uploads/2017/05/Buy-Tickets.png"
   },
   price: {
     type: Sequelize.FLOAT,

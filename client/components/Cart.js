@@ -53,12 +53,14 @@ export class Cart extends Component {
         </Link>
         {products.map((product) => (
           <div key={product.id}>
-            <span> {product.name} </span>
-            <span> {" QTY: "}</span>
-            <span> {product.order_product.quantity} </span>
-            <button onClick={this.handleDelete} name={product.id}>
-              Remove From Cart
-            </button>
+            <h1> {product.name} </h1>
+            <div>
+              <h4> {" QTY: "} <span> {product.order_product.quantity} </span> </h4>
+              <button onClick={this.handleDelete} name={product.id}>
+                Remove From Cart
+              </button>
+            </div>
+            
           </div>
         ))}
       </div>

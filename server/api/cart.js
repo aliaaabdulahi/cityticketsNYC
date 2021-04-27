@@ -21,7 +21,13 @@ router.get("/:userId", async (req, res, next) => {
         model: Product,
       },
     });
-    res.send(existingCart);
+    if (existingCart){
+      res.send(existingCart);
+    } else {
+      res.sendStatus(401)
+      return
+    }
+    
   } catch (error) {
     next(error);
   }
@@ -97,7 +103,7 @@ router.post("/:userId", async (req, res, next) => {
       });
       res.send(newCart);
     } else {
-      console.log("cart exisits");
+      console.log("sits");
       res.send(existCart);
     }
   } catch (error) {}
