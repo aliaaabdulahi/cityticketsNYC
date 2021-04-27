@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { User } } = require('../db')
+const { models: { User,Order } } = require('../db')
 const { requireToken, isLoggedInUser } = require('./gatekeepingMiddleware')
 
 module.exports = router
@@ -30,11 +30,3 @@ router.get("/test", async (req, res, next) => {
   }
 });
 
-// router.get("/orders", requireToken, isLogginUser, async (req, res, next) => {
-//    try {
-//       const usersOrders = await 
-//       res.json(?);
-//    } catch (err) {
-//       next(err);
-//    }
-// });
