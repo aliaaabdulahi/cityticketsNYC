@@ -12,7 +12,7 @@ import Admin from "./components/Admin/Admin";
 import AdminEditProduct from "./components/Admin/AdminEditProduct";
 import Cart from "./components/Cart";
 import Thanks from "./components/Thanks";
-
+import OrderHistory from "./components/OrderHistory";
 /**
  * COMPONENT
  */
@@ -43,6 +43,7 @@ class Routes extends Component {
               component={AdminEditProduct}
             />
             <Route exact path="/admin" component={Admin} />
+            <Route exact path="/orderHistory" component={OrderHistory} />
 
             {/* <Redirect to="/home" /> */}
           </Switch>

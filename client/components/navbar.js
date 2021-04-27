@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
+import Cart from "./Cart";
+import OrderHistory from "./OrderHistory";
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div>
@@ -12,6 +14,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
+          <Link to="/products">Events </Link>
+          <Link to="/cart">Cart</Link>
+          <Link to="/orderHistory">Order History</Link>
+
           {isAdmin ? (
             <Link to="/admin"> Admin Home </Link>
           ) : (
