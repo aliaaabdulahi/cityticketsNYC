@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchProducts } from "../store/products";
-import {getCartThunk, removeFromCartThunk} from '../store/cart'
+import { getCartThunk, removeFromCartThunk } from "../store/cart";
 import SingleProduct from "./SingleProduct";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
@@ -17,7 +17,9 @@ class AllProducts extends Component {
   }
   componentDidMount() {
     this.props.loadProducts();
-    this.props.fetchCart(this.props.auth.id,{buyerEmail:this.props.auth.email})
+    this.props.fetchCart(this.props.auth.id, {
+      buyerEmail: this.props.auth.email,
+    });
   }
 
   handleAdd(evt) {
@@ -33,7 +35,7 @@ class AllProducts extends Component {
         {products
           ? products.map((product) => (
               <div key={product.id}>
-                <ProductCard product={product}/>
+                <ProductCard product={product} />
               </div>
             ))
           : "loading"}
@@ -45,7 +47,7 @@ class AllProducts extends Component {
 const mapState = (state) => {
   return {
     products: state.products,
-    auth: state.auth
+    auth: state.auth,
   };
 };
 
