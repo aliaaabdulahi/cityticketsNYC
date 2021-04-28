@@ -30,20 +30,15 @@ class AllProducts extends Component {
 
     return (
       <div>
-
- 
-        <div>
-          <h3> View more events: </h3>
+        <div className="all-items-row">
           {products
             ? products.map((product) => (
-
-              <div key={product.id}>
-                <ProductCard product={product} />
-              </div>
-            ))
+                <div key={product.id}>
+                  <ProductCard product={product} />
+                </div>
+              ))
             : "loading"}
         </div>
-        
       </div>
     );
   }

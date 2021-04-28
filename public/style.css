@@ -25,14 +25,14 @@ form div {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 0px
+  margin-top: 0px;
 }
 
 a:visited {
-  color:black;
+  color: black;
   background-color: transparent;
   text-decoration: none;
- }
+}
 
 a:active {
   color: rgb(5, 5, 63);
@@ -41,34 +41,34 @@ a:active {
 }
 
 a:link {
-  color:black;
+  color: black;
   background-color: transparent;
   text-decoration: none;
 }
-a:hover ,.nav-link:hover {
+a:hover,
+.nav-link:hover {
   color: rgb(20, 73, 20);
   text-decoration: underline;
 }
 
-
-input{
-  width: 100%; 
+input {
+  width: 100%;
   padding: 12px;
   border: 1px solid rgb(170, 166, 166);
   border-radius: 4px;
   resize: vertical;
   margin: 4px;
-  font-size: 1rem
+  font-size: 1rem;
 }
 
 label {
   font-weight: bold;
-  font-size: 1.25em
+  font-size: 1.25em;
 }
 input:focus::-webkit-input-placeholder {
-  transition: opacity 0.4s 0.4s ease!important;
-  opacity: 0.40;
-  }
+  transition: opacity 0.4s 0.4s ease !important;
+  opacity: 0.4;
+}
 
 .col-20 {
   float: left;
@@ -83,17 +83,26 @@ input:focus::-webkit-input-placeholder {
 }
 
 button:hover {
-   background-color: rgb(122, 148, 226);
- }
+  background-color: rgb(122, 148, 226);
+}
 
- img {
+img {
   transition: box-shadow 0.4s ease;
-  border-radius: 3px; 
-  width:  150px;
+  border-radius: 3px;
+  width: 150px;
   height: auto;
   object-fit: cover;
-} 
+}
 
 img:hover {
   box-shadow: 4px 4px 4px #5a5a5a;
+}
+
+.all-items-row {
+  align-items: stretch;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+  flex-wrap: wrap;
 }

@@ -8,7 +8,7 @@ export const HomeContainer = styled.div`
       rgba(11, 10, 10, 0.38),
       rgba(11, 10, 10, 0.19)
     ),
-    url(${ImgBg});
+    url("https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29uY2VydHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

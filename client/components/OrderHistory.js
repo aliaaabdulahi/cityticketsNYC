@@ -11,23 +11,21 @@ class OrderHistory extends React.Component {
 
   render() {
     const history = this.props.orderHistory;
-  
+
     console.log(history);
     return (
-      <div>
-        {history.map(order => (
-    order.products.map(product => (
-    <div key = {product.id}>{product.name}</div>
-))
-))}
-
-        
+      <div className="notwhite">
+        {history.map((order) =>
+          order.products.map((product) => (
+            <div className="notwhite" key={product.id}>
+              {product.name}
+            </div>
+          ))
+        )}
       </div>
     );
   }
 }
-
-
 
 const mapState = (state) => {
   return {
