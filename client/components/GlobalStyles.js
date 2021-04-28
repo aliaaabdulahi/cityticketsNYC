@@ -76,6 +76,7 @@ export const Button = styled.button`
   outline: none;
   cursor: pointer;
   border: none;
+  margin: 10px;
   transition: all 0.5s ease;
   &:hover {
     background-color: ${({ primary }) => (primary ? "#fff" : "#E38B06")};

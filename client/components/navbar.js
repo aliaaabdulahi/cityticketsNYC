@@ -14,14 +14,15 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}{" "}
-          <Link to="/products"> 🎶Events </Link>
-          <Link to="/cart"> 🛒 Cart </Link>
-          <Link to="/orderHistory"> 💰Order History</Link>
           {isAdmin ? (
             <Link to="/admin"> 🏚 Admin Home </Link>
           ) : (
             <Link to="/home"> 🏠 Home</Link>
           )}
+          <Link to="/products"> 🎶Events </Link>
+          <Link to="/cart"> 🛒 Cart </Link>
+          <Link to="/orderHistory"> 💰Order History</Link>
+       
           <a href="#" onClick={handleClick}>
             💔Logout
           </a>

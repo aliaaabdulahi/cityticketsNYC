@@ -1,5 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "../GlobalStyles";
+import {
+  ProductsContainer,
+  ProductsContent,
+  ProductsTitle,
+  ProductsCardContent,
+  ProductsCard,
+  ProductsIconContainer,
+  ProductsIcon1,
+  ProductsIcon2,
+  ProductsIcon3,
+  ProductsCardTitle,
+  ProductsCardText,
+} from "../AllProducts.styles";
 
 const AdminUser = (props) => {
 
@@ -8,6 +22,11 @@ const AdminUser = (props) => {
 
    return (
       <div>
+       <ProductsContent>          
+      <ProductsContainer>            
+      <ProductsCardContent>
+      
+      <ProductsCard>
          <div className='card-30'>
             <Link to={`/admin/users/${id}`}>
                <h4>{username}</h4>
@@ -17,14 +36,18 @@ const AdminUser = (props) => {
          <div className='card-70'>
             <p><strong>{isAdmin === true ? "admin" : " "}</strong></p>
          </div>
-         <button
-            className='remove-button'
+         <Button
+           
             onClick={() => handleDelete(id)}
          > Delete User
-      </button>
+      </Button>
          <Link to={`/admin/users/${id}/edit`}>
-            <button> Edit User </button>
+            <Button> Edit User </Button>
          </Link>
+         </ProductsCard>
+         </ProductsCardContent> 
+         </ProductsContainer>
+         </ProductsContent>
       </div>
    );
 };
