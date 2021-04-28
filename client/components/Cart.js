@@ -13,9 +13,7 @@ export class Cart extends Component {
       products: this.props.products || [],
       cart: this.props.cart || {},
     };
-    // this.state = {
-    //   products: [],
-    // };
+
     this.handleDelete = this.handleDelete.bind(this);
     this.handleCheckout = this.handleCheckout.bind(this);
   }

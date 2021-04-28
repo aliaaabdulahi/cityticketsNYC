@@ -3510,10 +3510,7 @@ class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     this.state = {
       products: this.props.products || [],
       cart: this.props.cart || {}
-    }; // this.state = {
-    //   products: [],
-    // };
-
+    };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleCheckout = this.handleCheckout.bind(this);
   }
