@@ -1,6 +1,6 @@
 import styled from "styled-components";
 // import {BiCheck, BiDetail, BiDish} from 'react-icons/bi';
-import { Container } from "./Globalstyles";
+import { Container } from "./GlobalStyles";
 
 export const ProductsContent = styled.section`
   display: flex;
