@@ -8,7 +8,7 @@ import OrderHistory from "./OrderHistory";
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div>
     <Link to="/home">
-      <h1 class="notwhite">NYC City Tickets 🎫</h1>
+      <h1 className="notwhite">NYC City Tickets 🎫</h1>
     </Link>
     <nav>
       {isLoggedIn ? (

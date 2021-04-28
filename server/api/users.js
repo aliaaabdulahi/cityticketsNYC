@@ -22,11 +22,3 @@ router.put("/:id", requireToken, isLoggedInUser, async (req, res, next) => {
   }
 });
 
-router.get("/test", async (req, res, next) => {
-  try {
-     res.send('hi')
-  } catch (err) {
-    next(err);
-  }
-});
-

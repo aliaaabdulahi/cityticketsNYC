@@ -7,7 +7,7 @@ const { route } = require("./order_products");
 
 //   /cart/userId
 
-router.get("/:userId", async (req, res, next) => {
+router.get("/:userId", requireToken, async (req, res, next) => {
   try {
     const email = req.body.buyerEmail;
 
@@ -33,7 +33,7 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
-router.post("/addProduct", async (req, res, next) => {
+router.post("/addProduct",requireToken,  async (req, res, next) => {
   try {
     // orderId, productId, qty
     const orderId = parseInt(req.body.orderId);
@@ -49,7 +49,7 @@ router.post("/addProduct", async (req, res, next) => {
   } catch (error) {}
 });
 
-router.put("/deleteProduct", async (req, res, next) => {
+router.put("/deleteProduct", requireToken, async (req, res, next) => {
   try {
     // orderId, productId
     const orderId = parseInt(req.body.orderId);
@@ -62,28 +62,26 @@ router.put("/deleteProduct", async (req, res, next) => {
         productId: productId,
       },
     });
-    result.destroy();
-
-    res.send(result);
+    await result.destroy();
+  
+    res.send(await Order.findOne({
+      where:{
+        id:orderId,
+      },
+      include: {
+        model: Product,
+      },
+    }));
   } catch (error) {}
 });
 
-router.post("/:userId", async (req, res, next) => {
+router.post("/:userId", requireToken,  async (req, res, next) => {
   try {
     console.log("safely arrived backend-->", req.body);
     const userId = req.params.userId;
     const email = req.body.buyerEmail;
 
-    // const cart = await Order.findOrCreate({
-    //   where: {
-    //     buyerEmail: email,
-    //     userId: userId,
-    //     isFulfilled: false
-    //   },
-    //   include: {
-    //     model: Product,
-    //   },
-    // })
+
     const existCart = await Order.findOne({
       where: {
         userId: userId,

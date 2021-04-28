@@ -1,9 +1,11 @@
 const router = require("express").Router();
+const { requireToken, isLoggedInUser } = require('./gatekeepingMiddleware')
+
 const {
   models: { Order,Product },
 } = require("../db");
 
-router.put('/:userId', async (req, res, next) => 
+router.put('/:userId', requireToken, async (req, res, next) => 
 {
     const orders = await Order.findAll({where:{
         userId:req.params.userId,
