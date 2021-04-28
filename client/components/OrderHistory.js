@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchHistory } from "../store/order_history";
+import NestedSingle from './NestedSingle'
+
 class OrderHistory extends React.Component {
   constructor(props) {
     super(props);
@@ -12,16 +14,28 @@ class OrderHistory extends React.Component {
   render() {
     const history = this.props.orderHistory;
 
-    console.log(history);
+    console.log('here is the history', history);
     return (
+      // <div className="notwhite">
+      //   {history.map((order) => 
+      //     order.products.map((product) => (
+      //       <div className="notwhite" key={product.id}>
+      //         {product.name}
+      //       </div>)
+      //     )
+      //   )}
+      // </div>
       <div className="notwhite">
-        {history.map((order) =>
-          order.products.map((product) => (
-            <div className="notwhite" key={product.id}>
-              {product.name}
-            </div>
-          ))
-        )}
+        {history.map(order =>
+        <div key={order.id}>
+        Order Number:{order.id}
+        <div/>
+        Date: {Date(order.createdAt)}
+        <NestedSingle products={order.products}/>
+        <hr/>
+        <div/>
+        </div>)}
+        
       </div>
     );
   }

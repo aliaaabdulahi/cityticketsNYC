@@ -61,7 +61,8 @@ class SingleProduct extends Component {
             <ProductsCardContent>
               <ProductsCard>
                 <div key={this.props.product.id}>
-                  {this.props.product.name} {this.props.product.id}
+                 <h4> {this.props.product.name} </h4>
+                  <p> {this.props.product.description}</p>
                   <input
                     type="number"
                     min={1}
@@ -70,7 +71,7 @@ class SingleProduct extends Component {
                     name="quantity"
                   />
                   <Link to="/cart">
-                    <button onClick={this.handleSubmit}>Add to Cart</button>
+                    <Button onClick={this.handleSubmit}>Add to Cart</Button>
                   </Link>
                 </div>
               </ProductsCard>

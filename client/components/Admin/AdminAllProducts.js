@@ -4,6 +4,7 @@ import { getProducts, deleteProduct } from '../../store/admin_products';
 import AdminProduct from './AdminProduct';
 // import { me } from "/client/store/auth";
 
+
 export class AdminAllProducts extends React.Component {
    constructor(props) {
       super(props)
@@ -30,7 +31,8 @@ export class AdminAllProducts extends React.Component {
       }
 
       return (
-         <div>
+         <div className='notwhite all-items-row'>
+      
             {
                (
                   Array.isArray(adminProducts) && adminProducts.length === 0) ? (
@@ -40,7 +42,7 @@ export class AdminAllProducts extends React.Component {
                ) : (
                   <div>
                      <div className='all-items-row'>
-                        <h2> ALL Products: </h2>
+                        <h2 style={{color:"white"}}> ALL Products: </h2>
                            <p>{adminProducts.length} products in the database</p>
                      </div>
 
@@ -54,8 +56,11 @@ export class AdminAllProducts extends React.Component {
                            </div>
                         ))}
                      </div>
+                    
                   </div>
+                 
                )}
+              
          </div>
       );
    }

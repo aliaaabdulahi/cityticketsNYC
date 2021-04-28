@@ -8,20 +8,21 @@ import OrderHistory from "./OrderHistory";
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
   <div>
     <Link to="/home">
-      <h1 class="notwhite">NYC City Tickets 🎫</h1>
+      <h1 className="notwhite">NYC City Tickets 🎫</h1>
     </Link>
     <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}{" "}
-          <Link to="/products"> 🎶Events </Link>
-          <Link to="/cart"> 🛒 Cart </Link>
-          <Link to="/orderHistory"> 💰Order History</Link>
           {isAdmin ? (
             <Link to="/admin"> 🏚 Admin Home </Link>
           ) : (
             <Link to="/home"> 🏠 Home</Link>
           )}
+          <Link to="/products"> 🎶Events </Link>
+          <Link to="/cart"> 🛒 Cart </Link>
+          <Link to="/orderHistory"> 💰Order History</Link>
+       
           <a href="#" onClick={handleClick}>
             💔Logout
           </a>

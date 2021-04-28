@@ -51,8 +51,8 @@ export class AdminAllUsers extends React.Component {
                   ) : (
                      <div>
                         <div className='all-items-row'>
-                              <h2> ALL USERS: </h2>
-                              <p>{users.length} users in the database</p>
+                              <h2 className ="notwhite"> ALL USERS: </h2>
+                              <p className ="notwhite">{users.length} users in the database</p>
                          </div>
 
                         <div className='all-items-row'>
