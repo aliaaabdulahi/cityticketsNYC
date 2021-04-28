@@ -3541,7 +3541,7 @@ class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   componentDidMount() {
-    console.log('component DID MOUNT');
+    console.log("component DID MOUNT");
     const body = {
       buyerEmail: this.props.auth.email
     };
@@ -3549,13 +3549,14 @@ class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   componentDidUpdate(prevState) {
-    console.log('in UPDATE, prev', prevState.cart);
-    console.log('in UPDATE, cur', this.props.cart);
+    console.log("in UPDATE, prev", prevState.cart);
+    console.log("in UPDATE, cur", this.props.cart);
 
     if (prevState.cart !== this.props.cart) {
       const body = {
         buyerEmail: this.props.auth.email
       };
+      this.props.fetchCart(this.props.auth.id, body);
       this.setState({
         products: this.props.cart.products || [],
         cart: this.props.cart || {}
@@ -3564,7 +3565,7 @@ class Cart extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
 
   handleDelete(evt) {
-    console.log('DELETE'); // evt.preventDefault();
+    console.log("DELETE"); // evt.preventDefault();
 
     const productId = evt.target.name;
     const orderId = this.props.cart.id;
@@ -4462,7 +4463,9 @@ const Navbar = ({
   to: "/login"
 }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
   to: "/signup"
-}, "Sign Up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null));
+}, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+  to: "/products"
+}, " \uD83C\uDFB6Events "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", null));
 /**
  * CONTAINER
  */

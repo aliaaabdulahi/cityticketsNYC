@@ -19,20 +19,21 @@ export class Cart extends Component {
   }
 
   componentDidMount() {
-    console.log('component DID MOUNT')
+    console.log("component DID MOUNT");
     const body = {
       buyerEmail: this.props.auth.email,
     };
     this.props.fetchCart(this.props.auth.id, body);
   }
   componentDidUpdate(prevState) {
-    console.log('in UPDATE, prev', prevState.cart)
-    console.log('in UPDATE, cur', this.props.cart)
+    console.log("in UPDATE, prev", prevState.cart);
+    console.log("in UPDATE, cur", this.props.cart);
 
     if (prevState.cart !== this.props.cart) {
       const body = {
         buyerEmail: this.props.auth.email,
       };
+      this.props.fetchCart(this.props.auth.id, body);
 
       this.setState({
         products: this.props.cart.products || [],
@@ -41,7 +42,7 @@ export class Cart extends Component {
     }
   }
   handleDelete(evt) {
-    console.log('DELETE')
+    console.log("DELETE");
     // evt.preventDefault();
     const productId = evt.target.name;
     const orderId = this.props.cart.id;
@@ -50,7 +51,6 @@ export class Cart extends Component {
       productId: productId,
     };
     this.props.removeFromCart(body);
-
   }
 
   handleCheckout() {
