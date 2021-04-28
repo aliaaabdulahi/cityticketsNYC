@@ -5,6 +5,7 @@ export const singleContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  float: right;
   width: 100%;
   margin-top: 7rem;
 `;
@@ -13,6 +14,7 @@ export const singleContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  float: right;
   background: #fff;
   @media only screen and (max-width: 1000px) {
     flex-direction: column;

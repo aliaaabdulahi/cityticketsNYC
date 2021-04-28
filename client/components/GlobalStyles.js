@@ -22,8 +22,11 @@ body{
     font-weight: 400;
     line-height: 1.6;
     font-size: 1.6rem;
-    background: #F9F9F9;
+    background: #023047;
     color: #333;
+}
+.notwhite {
+  color:orange;
 }
 h1{
   color: white;
@@ -31,6 +34,14 @@ h1{
 a{
   color:  white;
 }
+.product {
+  float: left;
+
+}
+nav {
+  background-color: white;
+}
+
 `;
 
 export default GlobalStyles;
@@ -38,6 +49,7 @@ export default GlobalStyles;
 export const Container = styled.div`
   margin: 0 auto;
   padding: 0 50px;
+  display: flex;
   max-width: 1300px;
   width: 100%;
   @media (max-width: 400px) {

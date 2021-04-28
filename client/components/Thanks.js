@@ -5,13 +5,13 @@ import { logout } from "../store";
 
 const Thanks = ({ handleClick }) => (
   <div>
-    <h1>
+    <h1 class="notwhite">
       Thank you for your purchase. 🍾
       <br></br>
       Enjoy the show!
     </h1>
     <hr />
-    <button>
+    <button class="notwhite">
       <Link to="/products">Keep Shopping</Link>
     </button>
   </div>

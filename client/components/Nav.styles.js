@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { IoTicketOutline } from "react-icons/bi";
-import { Container } from "../../Globalstyles";
+import { Container } from "./Globalstyles";
 
 export const Nav = styled.nav`
   font-size: 18px;

@@ -1,14 +1,21 @@
 import React, { Component } from "react";
-import { getCartThunk, removeFromCartThunk, checkoutThunk } from "../store/cart";
+import {
+  getCartThunk,
+  removeFromCartThunk,
+  checkoutThunk,
+} from "../store/cart";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 export class Cart extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      products: [],
+      products: this.props.products || [],
+      cart: this.props.cart || {},
     };
+    // this.state = {
+    //   products: [],
+    // };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleCheckout = this.handleCheckout.bind(this);
   }
@@ -21,13 +28,13 @@ export class Cart extends Component {
   }
   componentDidUpdate(prevState) {
     if (prevState.cart !== this.props.cart) {
-
       const body = {
         buyerEmail: this.props.auth.email,
       };
-      // this.props.fetchCart(this.props.auth.id, body);
+
       this.setState({
-        products: this.props.cart.products,
+        products: this.props.cart.products || [],
+        cart: this.props.cart || {},
       });
     }
   }
@@ -42,38 +49,43 @@ export class Cart extends Component {
     this.props.removeFromCart(body);
   }
 
-  handleCheckout(){
-    this.props.checkout(this.props.auth.id)
+  handleCheckout() {
+    this.props.checkout(this.props.auth.id);
   }
   render() {
     console.log("here is your cart!!!", this.state.products);
     const products = this.state.products || [];
-    const prices = [0]
-    products.forEach(product => prices.push(product.order_product.quantity*product.price))
-    let sum = prices.reduce((acc, val) => acc+val)
-
+    const prices = [0];
+    products.forEach((product) =>
+      prices.push(product.order_product.quantity * product.price)
+    );
+    let sum = prices.reduce((acc, val) => acc + val);
 
     return (
-      <div>
+      <div className="notwhite">
         <p>My Cart 🛒</p>
 
         {products.map((product) => (
-          <div key={product.id}>
-            <h1> {product.name} </h1>
+          <div class="notwhite" key={product.id}>
+            <h2> {product.name} </h2>
             <div>
-              <h4> {" QTY: "} <span> {product.order_product.quantity} </span> </h4>
+              <h4>
+                {" "}
+                {" QTY: "} <span> {product.order_product.quantity} </span>{" "}
+              </h4>
               <button onClick={this.handleDelete} name={product.id}>
                 Remove From Cart
               </button>
             </div>
-            
           </div>
         ))}
-        <p>Order Total: ${sum}</p>
-    
-          <button onClick={this.handleCheckout}>Checkout</button>
 
-   
+        <p>Order Total: ${sum.toFixed(2)}</p>
+
+        <button onClick={this.handleCheckout}>Checkout</button>
+        <Link to="/products">
+          <button>Shop more!</button>
+        </Link>
       </div>
     );
   }
@@ -86,11 +98,11 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch, {history}) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     fetchCart: (userId, body) => dispatch(getCartThunk(userId, body)),
     removeFromCart: (body) => dispatch(removeFromCartThunk(body)),
-    checkout:(userId) => dispatch(checkoutThunk(userId, history))
+    checkout: (userId) => dispatch(checkoutThunk(userId, history)),
   };
 };
 
