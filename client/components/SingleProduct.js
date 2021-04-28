@@ -61,7 +61,7 @@ class SingleProduct extends Component {
             <ProductsCardContent>
               <ProductsCard>
                 <div key={this.props.product.id}>
-                 <h4> {this.props.product.name} </h4>
+                  <h4> {this.props.product.name} </h4>
                   <p> {this.props.product.description}</p>
                   <input
                     type="number"
@@ -70,9 +70,15 @@ class SingleProduct extends Component {
                     onChange={this.handleChange}
                     name="quantity"
                   />
-                  <Link to="/cart">
-                    <Button onClick={this.handleSubmit}>Add to Cart</Button>
-                  </Link>
+                  {this.props.isLoggedIn ? (
+                    <Link to="/cart">
+                      <Button onClick={this.handleSubmit}>Add to Cart</Button>
+                    </Link>
+                  ) : (
+                    <Link to="/login">
+                      <Button>Please sign in</Button>
+                    </Link>
+                  )}
                 </div>
               </ProductsCard>
             </ProductsCardContent>
@@ -88,6 +94,7 @@ const mapState = (state) => {
     product: state.product,
     cart: state.cart,
     auth: state.auth,
+    isLoggedIn: !!state.auth.id,
   };
 };
 

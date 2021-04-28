@@ -4108,11 +4108,13 @@ class SingleProduct extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       max: 999999,
       onChange: this.handleChange,
       name: "quantity"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+    }), this.props.isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
       to: "/cart"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GlobalStyles__WEBPACK_IMPORTED_MODULE_4__.Button, {
       onClick: this.handleSubmit
-    }, "Add to Cart"))))))));
+    }, "Add to Cart")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+      to: "/login"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_GlobalStyles__WEBPACK_IMPORTED_MODULE_4__.Button, null, "Please sign in"))))))));
   }
 
 }
@@ -4121,7 +4123,8 @@ const mapState = state => {
   return {
     product: state.product,
     cart: state.cart,
-    auth: state.auth
+    auth: state.auth,
+    isLoggedIn: !!state.auth.id
   };
 };
 
