@@ -8,3 +8,6 @@ steps to take:
 2. createdb grace-shopper-test
 
 http://cityticketsnyc.herokuapp.com/
+
+
+Contributors: Alia Abdulahi, Iris Shi, Hannah Kemp, Amy Train
