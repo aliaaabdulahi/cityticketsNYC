@@ -10,4 +10,4 @@ steps to take:
 http://cityticketsnyc.herokuapp.com/
 
 
-Contributors: Alia Abdulahi, Iris Shi, Hannah Kemp, Amy Train
+Contributors: Alia Abdulahi, Iris Shi, Hannah Kemp, Amy Tran
